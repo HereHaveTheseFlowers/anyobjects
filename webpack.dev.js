@@ -6,6 +6,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
+        publicPath: '/',
     },
     mode: 'development',
     devServer: {
@@ -37,7 +38,7 @@ module.exports = {
                     // 3. Place styles.css into the dist folder.
                     loader: 'file-loader',
                     options: {
-                        name: 'styles.css'
+                        name: '[path][name].[ext]'
                     }
                 },
                 
