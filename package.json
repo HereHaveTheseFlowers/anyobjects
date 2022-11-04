@@ -1,0 +1,45 @@
+{
+  "name": "anyobjects",
+  "version": "0.0.0",
+  "description": "Curated project about Russian production. We have created an archive of objects that we found beautiful.",
+  "scripts": {
+    "bundle-report": "webpack-bundle-analyzer --port 4200 ./dist/bundle.js",
+    "clean": "rimraf ./dist/",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run clean &&  webpack --config webpack.prod.js",
+    "dev": "npm run clean && webpack  --config webpack.dev.js && webpack serve --config webpack.dev.js",
+    "watch": "webpack --watch",
+    "serve": "webpack serve --config webpack.prod.js"
+  },
+  "engines": {
+    "node": ">=15"
+  },
+  "author": "HereHaveTheseFlowers",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react-dom": "^18.0.8",
+    "@webpack-cli/generators": "2.5.0",
+    "autoprefixer": "10.4.13",
+    "classnames": "2.3.2",
+    "file-loader": "6.2.0",
+    "html-webpack-plugin": "5.5.0",
+    "modern-normalize": "1.1.0",
+    "postcss": "8.4.18",
+    "postcss-loader": "7.0.1",
+    "postcss-sorting": "^7.0.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "6.4.3",
+    "rimraf": "3.0.2",
+    "sass": "1.56.0",
+    "sass-loader": "13.1.0",
+    "style-loader": "3.3.1",
+    "terser-webpack-plugin": "^5.3.6",
+    "ts-loader": "9.4.1",
+    "typescript": "4.8.4",
+    "webpack": "5.74.0",
+    "webpack-bundle-analyzer": "^4.7.0",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "4.11.1"
+  }
+}
