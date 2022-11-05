@@ -30,7 +30,8 @@ module.exports = {
                 exclude: ['/node_modules/'],
             },
             {
-                test: /\.s[ac]ss$/i,
+                test: /\.(sass|css)$/i,
+                exclude: /node_modules/,
                 use: [
                 // 4. Optional: place a link tag on js script load. In our case we already have it in the index.html
                 // {loader: "style-loader",options: {injectType: "linkTag"}},
@@ -38,10 +39,9 @@ module.exports = {
                     // 3. Place styles.css into the dist folder.
                     loader: 'file-loader',
                     options: {
-                        name: '[path][name].[ext]'
+                        name: '[name].css'
                     }
                 },
-                
                     // 2. Sort the parameters alphabetically
                     'postcss-loader', 
                 {

@@ -1,8 +1,6 @@
 import classnames from 'classnames';
 import React from 'react';
 
-import './styles.sass';
-
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export function Button(props: ButtonProps) {

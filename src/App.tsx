@@ -4,9 +4,7 @@ import { Router } from './router';
 export default function App() {
     return (
         <main>
-            <section>
-                <Router />
-            </section>
+            <Router />
         </main>
     );
 }
