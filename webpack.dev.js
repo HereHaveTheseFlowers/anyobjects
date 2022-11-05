@@ -30,7 +30,7 @@ module.exports = {
                 exclude: ['/node_modules/'],
             },
             {
-                test: /\.(sass|css)$/i,
+                test: /\.sass$/i,
                 exclude: /node_modules/,
                 use: [
                 // 4. Optional: place a link tag on js script load. In our case we already have it in the index.html
@@ -56,8 +56,11 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                type: 'asset',
+              test: /\.css$/,
+              use: [
+                'style-loader',
+                'css-loader'
+              ],
             },
         ],
     },

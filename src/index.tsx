@@ -1,4 +1,5 @@
 import './assets/fonts/fonts.css';
+import '../node_modules/modern-normalize/modern-normalize.css'
 import './styles.sass';
 import React from "react";
 import ReactDOM from "react-dom/client";
