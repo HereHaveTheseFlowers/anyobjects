@@ -8,5 +8,6 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "Node"
   },
-  "files": ["src/index.tsx"]
+  "files": ["src/index.tsx"],
+  "include": ["src/components", "src/custom.d.ts"]
 }
