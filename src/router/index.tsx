@@ -4,13 +4,13 @@ import { Loader } from '../components';
 import { withPrivateRoute } from './withPrivateRoute';
 import { RouterList } from './routerList';
 
-const HomePage = lazy(() => import('../pages/Home'));
-const AboutPage = lazy(() => import('../pages/About'));
-const ObjectPage = lazy(() => import('../pages/Object'));
-const AdminPage = lazy(() => import('../pages/Admin'));
-const AdminEditPage = lazy(() => import('../pages/AdminEdit'));
-const ServerErrorPage = lazy(() => import('../pages/ServerError'));
-const NotFoundPage = lazy(() => import('../pages/NotFound'));
+const HomePage = lazy(() => import(/* webpackChunkName: "home" */ '../pages/Home'));
+const AboutPage = lazy(() => import(/* webpackChunkName: "about" */ '../pages/About'));
+const ObjectPage = lazy(() => import(/* webpackChunkName: "object" */ '../pages/Object'));
+const AdminPage = lazy(() => import(/* webpackChunkName: "admin" */ '../pages/Admin'));
+const AdminEditPage = lazy(() => import(/* webpackChunkName: "adminedit" */ '../pages/AdminEdit'));
+const ServerErrorPage = lazy(() => import(/* webpackChunkName: "servererror" */ '../pages/ServerError'));
+const NotFoundPage = lazy(() => import(/* webpackChunkName: "notfound" */ '../pages/NotFound'));
 
 export function Router() {
   return (

@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 process.env.NODE_ENV = 'production';
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: './src/index.tsx',
@@ -23,50 +24,54 @@ module.exports = {
             template: './public/index.html',
             minify: true,
         }),
+        new MiniCssExtractPlugin(),
     ],
     module: {
         rules: [
             {
                 test: /\.(ts|tsx)$/i,
-                loader: 'ts-loader',
-                options: { transpileOnly: true },
                 exclude: ['/node_modules/'],
+                loader: 'babel-loader',
             },
             {
-                test: /\.s[ac]ss$/i,
+                test: /\.(sa|sc|c)ss$/i,
                 use: [
-                    // 4. Optional: place a link tag on js script load. In our case we already have it in the index.html
-                // {loader: "style-loader",options: {injectType: "linkTag"}},
-                {
-                    // 3. Place styles.css into the dist folder.
-                    loader: 'file-loader',
-                    options: {
-                        name: 'styles.css'
-                    }
-                },
+                    // 3. Put everything into main.css and put a style tag into html
+                    MiniCssExtractPlugin.loader,
+                    {
+                      loader: 'css-loader',
+                      options: {
+                        importLoaders: 1
+                      },
+                    },
                     // 2. Sort the parameters alphabetically
                     'postcss-loader', 
-                    // 1. Turns sass into css.
                     'sass-loader'
-                ],
+                ]
+
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                type: 'asset',
+                test: /\.(ico|gif|png|jpg|jpeg)$/i,
+                type: 'asset/resource',
+            },
+            {
+                test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+                type: 'asset/inline',
             },
         ],
     },
     optimization: {
-/*         splitChunks: {
-          minSize: 10000,
-          maxSize: 250000,
-        } */
         splitChunks: {
           cacheGroups: {
             reactVendor: {
               test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
               name: 'vendor-react',
               chunks: 'all',
+            },
+            corejsVendor: {
+                test: /[\\/]node_modules[\\/](core-js)[\\/]/,
+                name: 'vendor-corejs',
+                chunks: 'all',
             },
           },
         },
@@ -75,8 +80,8 @@ module.exports = {
         minimizer: [new TerserPlugin()],
     }, 
     performance: {
-        maxEntrypointSize: 512000,
-        maxAssetSize: 512000
+        maxEntrypointSize: 5000000,
+        maxAssetSize: 5000000
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],

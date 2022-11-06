@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: './src/index.tsx',
@@ -20,28 +21,26 @@ module.exports = {
             template: './public/index.html',
             minify: false,
         }),
+        new MiniCssExtractPlugin(),
     ],
     module: {
         rules: [
             {
                 test: /\.(ts|tsx)$/i,
-                loader: 'ts-loader',
-                options: { transpileOnly: true },
                 exclude: ['/node_modules/'],
+                loader: 'babel-loader',
             },
             {
-                test: /\.sass$/i,
-                exclude: /node_modules/,
+                test: /\.(sa|sc|c)ss$/i,
                 use: [
-                // 4. Optional: place a link tag on js script load. In our case we already have it in the index.html
-                // {loader: "style-loader",options: {injectType: "linkTag"}},
-                {
-                    // 3. Place styles.css into the dist folder.
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].css'
-                    }
-                },
+                    // 3. Put everything into main.css and put a style tag into html
+                    MiniCssExtractPlugin.loader,
+                    {
+                      loader: 'css-loader',
+                      options: {
+                        importLoaders: 1
+                      },
+                    },
                     // 2. Sort the parameters alphabetically
                     'postcss-loader', 
                 {
@@ -53,14 +52,16 @@ module.exports = {
                         }
                     }
                 }
-                ],
+                ]
+
             },
             {
-              test: /\.css$/,
-              use: [
-                'style-loader',
-                'css-loader'
-              ],
+                test: /\.(ico|gif|png|jpg|jpeg)$/i,
+                type: 'asset/resource',
+            },
+            {
+                test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+                type: 'asset/inline',
             },
         ],
     },
