@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { RouterList } from '../../router/routerList';
 
 export function ObjectGrid() {
+    const [objects, setObjects] = React.useState(store.getState().objects);
     let objectArray: Array<{ key: string; value: ObjectProps }> = [];
     Object.entries(store.getState().objects).forEach(entry => {
         const [key, value] = entry;
@@ -22,6 +23,10 @@ export function ObjectGrid() {
         }
     }
     objectArray = filteredArray;
+    const objectsUpdate = () => {
+        setObjects(store.getState().objects);
+    };
+    store.on('objects', objectsUpdate);
 
 
     const [filter, setFilter] = React.useState("ВСЁ");

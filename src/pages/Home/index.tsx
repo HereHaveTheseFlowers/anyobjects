@@ -3,10 +3,6 @@ import { Footer, Header, Button, FiltersTab, ObjectGrid } from '../../components
 import store from '../../utils/Store';
 
 export default function Home() {
-    const [, updateState] = React.useState();
-    const forceUpdate = React.useCallback(() => updateState((prevState: undefined) => undefined), []);
-    store.on('objects', forceUpdate);
-
     return (
         <>
             <Header logoSize={'big'} />
