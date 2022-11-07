@@ -19,8 +19,6 @@ export default function Home() {
 
     const handleArrow = () => {
         window.scrollTo(0, 0);
-        const arrow = document.querySelector('.home__arrow') as HTMLElement;
-        arrow.style.opacity = '0';
     }
 
     return (
