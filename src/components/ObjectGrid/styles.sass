@@ -1,0 +1,41 @@
+.object-grid
+    margin: 32px calc(24px - 16px) 0 24px
+    display: flex
+    flex-wrap: wrap
+    gap: 16px
+
+.object
+    flex-basis: calc(33.333333% - 16px)
+    position: relative
+    cursor: pointer
+    
+.object__image
+    width: 100%
+    user-drag: none
+    user-select: none
+    
+.object__card
+    width: 100%
+    height: 100%
+    opacity: 0
+    position: absolute
+    background: rgba($color-bg, 0.9)
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    font-style: normal
+    font-weight: 500
+    font-size: 16px
+    text-align: center
+    transition: opacity 0.1s
+    
+.object__card:hover
+    opacity: 1
+
+.object__brand
+    font-size: 19px
+    color: $color-font-active
+    
+.object__name
+    max-width: 400px
