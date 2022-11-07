@@ -29,7 +29,7 @@ module.exports = {
                     to({ context, absoluteFilename }) {
                         return `objects/${path.relative(context, absoluteFilename)}`;
                     },
-                    from: 'objects' 
+                    from: 'public/objects' 
                 }
             ]
         }),
