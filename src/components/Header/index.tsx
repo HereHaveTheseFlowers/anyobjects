@@ -1,7 +1,5 @@
-import classnames from 'classnames';
 import React from 'react';
 import { Button } from './../Button';
-import { Anchor } from './../Anchor';
 import bigLogo from '../../assets/svg/logo-big.svg';
 import smallLogo from '../../assets/svg/logo-small.svg';
 

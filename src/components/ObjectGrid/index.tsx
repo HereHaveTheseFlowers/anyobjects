@@ -3,57 +3,63 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RouterList } from '../../router/routerList';
 
-export function ObjectGrid() {
-    const [objects, setObjects] = React.useState(store.getState().objects);
-    let objectArray: Array<{ key: string; value: ObjectProps }> = [];
-    Object.entries(store.getState().objects).forEach(entry => {
-        const [key, value] = entry;
-        const object = { key: key, value: value as ObjectProps}
-        objectArray.push(object);
-    })
-    objectArray = objectArray.reverse();
-    const filteredArray: Array<{ key: string; value: ObjectProps }> = [];
-    for(const object of objectArray) {
-        if(!store.getState().filter || store.getState().filter === "ВСЁ") {
-            filteredArray.push(object);
-        } else {
-            if(object.value && object.value.category === store.getState().filter) {
-                filteredArray.push(object);
-            }
-        }
+export class ObjectGrid extends React.Component {
+    constructor(props: any) {
+        super(props)
+        this.state = {
+            filter: 'ВСЁ'
+        };
     }
-    objectArray = filteredArray;
-    const objectsUpdate = () => {
-        setObjects(store.getState().objects);
-    };
-    store.on('objects', objectsUpdate);
-
-
-    const [filter, setFilter] = React.useState("ВСЁ");
-    const filterUpdate = () => {
-        const newfilter = store.getState().filter ? store.getState().filter : "ВСЁ"
-        setFilter(newfilter);
-    };
-    store.on('filter', filterUpdate);
-
-    return (
-        <div className='object-grid'>
-            {
-                objectArray.map((object) => (
-                    <ObjectGrid.Object 
-                        key={object.key}
-                        objectkey={object.key}
-                        name={object.value.name}
-                        mainImage={object.value.mainImage}
-                        previewImage={object.value.previewImage}
-                        price={object.value.price}
-                        brand={object.value.brand}
-                        category={object.value.category}
-                    />
-                ))
+    render() {
+        store.on('objects', this.forceUpdate);
+        console.log('render')
+        let objectArray: Array<{ key: string; value: ObjectProps }> = [];
+        if(store.getState().objects && typeof store.getState().objects === 'object') {
+            Object.entries(store.getState().objects).forEach(entry => {
+                const [key, value] = entry;
+                const object = { key: key, value: value as ObjectProps}
+                objectArray.push(object);
+                console.log(object.value.name)
+            })
+            objectArray = objectArray.reverse();
+            const filteredArray: Array<{ key: string; value: ObjectProps }> = [];
+            for(const object of objectArray) {
+                if(!store.getState().filter || store.getState().filter === "ВСЁ") {
+                    filteredArray.push(object);
+                } else {
+                    if(object.value && object.value.category === store.getState().filter) {
+                        filteredArray.push(object);
+                    }
+                }
             }
-        </div>
-    );
+            objectArray = filteredArray;
+        }
+        
+        const filterUpdate = () => {
+            const newfilter = store.getState().filter ? store.getState().filter : "ВСЁ"
+            this.setState({ filter: newfilter });
+        };
+        store.on('filter', filterUpdate);
+
+        return (
+            <div className='object-grid'>
+                {
+                    objectArray.map((object) => (
+                        <ObjectItem 
+                            key={object.key}
+                            objectkey={object.key}
+                            name={object.value.name}
+                            mainImage={object.value.mainImage}
+                            previewImage={object.value.previewImage}
+                            price={object.value.price}
+                            brand={object.value.brand}
+                            category={object.value.category}
+                        />
+                    ))
+                }
+            </div>
+        );
+    }
 }
 
 type ObjectProps = {
@@ -66,7 +72,7 @@ type ObjectProps = {
     category: string;
 }
 
-ObjectGrid.Object = function ObjectGridObject(props: ObjectProps) {
+function ObjectItem(props: ObjectProps) {
     const navigate = useNavigate();
     const navigateObject = () => navigate(`${RouterList.OBJECT}/${props.objectkey}`);
     return (
@@ -79,5 +85,4 @@ ObjectGrid.Object = function ObjectGridObject(props: ObjectProps) {
         <img className="object__image" src={props.previewImage} alt="" draggable="false"/>
     </div>
     )
-};
-
+}
