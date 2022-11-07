@@ -6,9 +6,6 @@ import { RouterList } from '../../router/routerList';
 export class ObjectGrid extends React.Component {
     constructor(props: any) {
         super(props)
-        this.state = {
-            filter: 'ВСЁ'
-        };
     }
     render() {
         const forceUpdate = this.forceUpdate.bind(this)
@@ -40,7 +37,17 @@ export class ObjectGrid extends React.Component {
         
         const filterUpdate = () => {
             const newfilter = store.getState().filter ? store.getState().filter : "ВСЁ"
-            this.setState({ filter: newfilter });
+            const objects = document.querySelectorAll('.object');
+            for(const object of objects) {
+                const element = object as HTMLElement;
+                if(!newfilter || newfilter === "ВСЁ") {
+                    element.classList.remove('object_hidden');
+                } else if(element.dataset.category && element.dataset.category === newfilter) {
+                    element.classList.remove('object_hidden');
+                } else {
+                    element.classList.add('object_hidden');
+                }
+            }
         };
         store.on('filter', filterUpdate);
 
@@ -79,7 +86,7 @@ function ObjectItem(props: ObjectProps) {
     const navigate = useNavigate();
     const navigateObject = () => navigate(`${RouterList.OBJECT}/${props.objectkey}`);
     return (
-    <div className="object" onClick={navigateObject}>
+    <div className="object" onClick={navigateObject} data-category={props.category}>
         <div className="object__card">
             <span className="object__brand">{props.brand}</span>
             <span className="object__name">{props.name}</span>
