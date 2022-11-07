@@ -11,7 +11,10 @@ export class ObjectGrid extends React.Component {
         };
     }
     render() {
-        store.on('objects', this.forceUpdate);
+        const forceUpdate = this.forceUpdate.bind(this)
+        store.on('objects', () => {
+            forceUpdate();
+        });
         console.log('render')
         let objectArray: Array<{ key: string; value: ObjectProps }> = [];
         if(store.getState().objects && typeof store.getState().objects === 'object') {
