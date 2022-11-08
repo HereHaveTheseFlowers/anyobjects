@@ -1,6 +1,9 @@
 import { Footer, Header, Button, FiltersTab, ObjectGrid } from '../../components';
+import { fetchObjects } from '../../api/fetchObjects';
 
 export default function Home() {
+    fetchObjects();
+
     let lastScrollTimer = 0;
     window.onscroll = function() {
         lastScrollTimer++;
@@ -9,10 +12,10 @@ export default function Home() {
             const distanceScrolled = document.documentElement.scrollTop;
             if (distanceScrolled > 30) {
                 const arrow = document.querySelector('.home__arrow') as HTMLElement;
-                arrow.style.opacity = '1';
+                if(arrow) arrow.style.opacity = '1';
             } else {
                 const arrow = document.querySelector('.home__arrow') as HTMLElement;
-                arrow.style.opacity = '0';
+                if(arrow) arrow.style.opacity = '0';
             }
         }
     }

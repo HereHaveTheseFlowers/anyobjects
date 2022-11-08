@@ -7,49 +7,39 @@ export class ObjectGrid extends React.Component {
     constructor(props: any) {
         super(props)
     }
+    componentDidMount() {
+        this.filterUpdate();
+    }
+    filterUpdate() {
+        const newfilter = store.getState().filter ? store.getState().filter : "ВСЁ"
+        const objects = document.querySelectorAll('.object');
+        for(const object of objects) {
+            const element = object as HTMLElement;
+            if(!newfilter || newfilter === "ВСЁ") {
+                element.classList.remove('object_hidden');
+            } else if(element.dataset.category && element.dataset.category === newfilter) {
+                element.classList.remove('object_hidden');
+            } else {
+                element.classList.add('object_hidden');
+            }
+        }
+    }
     render() {
         const forceUpdate = this.forceUpdate.bind(this)
         store.on('objects', () => {
             forceUpdate();
         });
-        console.log('render')
         let objectArray: Array<{ key: string; value: ObjectProps }> = [];
         if(store.getState().objects && typeof store.getState().objects === 'object') {
             Object.entries(store.getState().objects).forEach(entry => {
                 const [key, value] = entry;
                 const object = { key: key, value: value as ObjectProps}
                 objectArray.push(object);
-                console.log(object.value.name)
             })
             objectArray = objectArray.reverse();
-            const filteredArray: Array<{ key: string; value: ObjectProps }> = [];
-            for(const object of objectArray) {
-                if(!store.getState().filter || store.getState().filter === "ВСЁ") {
-                    filteredArray.push(object);
-                } else {
-                    if(object.value && object.value.category === store.getState().filter) {
-                        filteredArray.push(object);
-                    }
-                }
-            }
-            objectArray = filteredArray;
         }
         
-        const filterUpdate = () => {
-            const newfilter = store.getState().filter ? store.getState().filter : "ВСЁ"
-            const objects = document.querySelectorAll('.object');
-            for(const object of objects) {
-                const element = object as HTMLElement;
-                if(!newfilter || newfilter === "ВСЁ") {
-                    element.classList.remove('object_hidden');
-                } else if(element.dataset.category && element.dataset.category === newfilter) {
-                    element.classList.remove('object_hidden');
-                } else {
-                    element.classList.add('object_hidden');
-                }
-            }
-        };
-        store.on('filter', filterUpdate);
+        store.on('filter', this.filterUpdate);
 
         return (
             <div className='object-grid'>

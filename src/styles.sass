@@ -8,14 +8,22 @@
 @import './components/ObjectGrid/styles.sass'
 
 @import './pages/Home/styles.sass'
+@import './pages/About/styles.sass'
 
 html
     scroll-behavior: smooth
 
 body
     margin: 32px
+
+.app
     display: flex
     flex-direction: column
+    align-items: center
 
 div#root
     font-family: 'CoFo Sans'
+
+*::selection
+    color: $color-bg
+    background-color: $color-font-active
