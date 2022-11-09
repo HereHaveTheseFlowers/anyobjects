@@ -2,6 +2,7 @@ import store from '../../utils/Store';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RouterList } from '../../router/routerList';
+import { vh, vw } from '../../utils/helpers';
 
 export class ObjectGrid extends React.Component {
     constructor(props: any) {
@@ -77,6 +78,8 @@ type ObjectCardProps = {
 function ObjectCard(props: ObjectCardProps) {
     const navigate = useNavigate();
     const navigateObject = () => navigate(`${RouterList.OBJECT}/${props.objectkey}`);
+    const objectImageSize =  ((vw(100) - vh(18)) / 3).toFixed(2);
+    console.log(objectImageSize)
     return (
     <div className="object-card" onClick={navigateObject} data-category={props.category}>
         <div className="object-card__info">
@@ -84,7 +87,7 @@ function ObjectCard(props: ObjectCardProps) {
             <span className="object-card__name">{props.name}</span>
             <span className="object-card__price">{props.price}₽</span>
         </div>
-        <img className="object-card__image" src={props.previewImage} alt={props.altText} draggable="false"/>
+        <img className="object-card__image" src={props.previewImage} alt={props.altText} draggable="false" width={objectImageSize} height={objectImageSize} />
     </div>
     )
 }

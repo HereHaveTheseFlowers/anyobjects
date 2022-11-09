@@ -78,3 +78,13 @@ export function set(object: Indexed | unknown, path: string, value: unknown): In
   
     return merge(object as Indexed, result);
 }
+
+export function vh(percent: number) {
+  const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  return (percent * h) / 100;
+}
+
+export function vw(percent: number) {
+  const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  return (percent * w) / 100;
+}
