@@ -8,6 +8,7 @@
         url('CoFoSans-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
 }
 /* Not in use rn
 @font-face {
@@ -20,6 +21,7 @@
         url('CoFoSans-Black.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
+    font-display: swap;
 }
  */
 @font-face {
@@ -32,6 +34,7 @@
         url('CoFoSans-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -44,6 +47,7 @@
         url('CoFoSans-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
 }
 
 /* Not in use rn
@@ -57,5 +61,6 @@
         url('CoFoRobert-RegularItalic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
+    font-display: swap;
 }
  */
