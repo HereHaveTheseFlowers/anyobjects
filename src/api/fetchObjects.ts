@@ -1,5 +1,19 @@
 import store from '../utils/Store';
 
+type ObjectApiProps = {
+    name: string;
+    brand: string;
+    price: string;
+    category: string;
+    description: string;
+    additionalInfo: string;
+    url: string;
+    urlText: string;
+    altText: string;
+    mainImage?: string;
+    previewImage?: string;
+}
+
 export const fetchObjects = () => {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -13,7 +27,7 @@ export const fetchObjects = () => {
                     request.send();
                     request.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
-                            const jsonData = JSON.parse(request.responseText);
+                            const jsonData: ObjectApiProps = JSON.parse(request.responseText);
                             jsonData['mainImage'] = `${window.location.origin}/objects/${objectpath}/main.png`
                             jsonData['previewImage'] = `${window.location.origin}/objects/${objectpath}/preview.png`
                             store.set(`objects.${objectpath}`, jsonData)

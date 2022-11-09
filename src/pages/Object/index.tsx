@@ -11,7 +11,7 @@ function useForceUpdate(){
     return () => setValue(value => value + 1);
 }
 
-type ObjectProps = {
+type ObjectStateProps = {
     name: string;
     brand: string;
     price: string;
@@ -20,6 +20,7 @@ type ObjectProps = {
     additionalInfo: string;
     url: string;
     urlText: string;
+    altText: string;
     mainImage: string;
     previewImage: string;
 }
@@ -30,7 +31,7 @@ export default function Object() {
 	store.on("objects", forceUpdate);
     const navigate = useNavigate();
     if (store.getState().objects && store.getState().objects[id]) {
-		const currentObject: ObjectProps = store.getState().objects[id]
+		const currentObject: ObjectStateProps = store.getState().objects[id]
         const handleNavigateCategory = () => {
             store.set("filter", currentObject.category);
             navigate(RouterList.HOME);
@@ -40,7 +41,7 @@ export default function Object() {
                 <Header logoSize='small' />
                 <FiltersTab noSticky={true} />
                 <section className="object">
-                    <img src={currentObject.mainImage} alt="" className="object__image" draggable="false" />
+                    <img src={currentObject.mainImage} alt={currentObject.altText} className="object__image" draggable="false" />
 					<div className="object__card">
 						<div className="object__info">
 							<div className="object__header">

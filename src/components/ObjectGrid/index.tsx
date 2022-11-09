@@ -54,6 +54,7 @@ export class ObjectGrid extends React.Component {
                             price={object.value.price}
                             brand={object.value.brand}
                             category={object.value.category}
+                            altText={object.value.altText}
                         />
                     ))
                 }
@@ -70,6 +71,7 @@ type ObjectCardProps = {
     mainImage: string;
     previewImage: string;
     objectkey: string;
+    altText: string;
 }
 
 function ObjectCard(props: ObjectCardProps) {
@@ -82,7 +84,7 @@ function ObjectCard(props: ObjectCardProps) {
             <span className="object-card__name">{props.name}</span>
             <span className="object-card__price">{props.price}₽</span>
         </div>
-        <img className="object-card__image" src={props.previewImage} alt="" draggable="false"/>
+        <img className="object-card__image" src={props.previewImage} alt={props.altText} draggable="false"/>
     </div>
     )
 }
