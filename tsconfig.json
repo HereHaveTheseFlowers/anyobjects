@@ -9,5 +9,10 @@
     "moduleResolution": "Node"
   },
   "files": ["src/index.tsx"],
-  "include": ["src/components", "src/custom.d.ts"]
+  "include": ["src/components", "src/custom.d.ts"],
+  "noImplicitAny": true,
+  "noImplicitReturns": true,
+  "noUnusedLocals": true,
+  "noUnusedParameters": true,
+  "strictNullChecks": true
 }

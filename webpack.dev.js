@@ -37,11 +37,6 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)$/i,
-                exclude: ['/node_modules/'],
-                loader: 'babel-loader',
-            },
-            {
                 test: /\.(sa|sc|c)ss$/i,
                 use: [
                     // 3. Put everything into main.css and put a style tag into html
@@ -65,6 +60,11 @@ module.exports = {
                 }
                 ]
 
+            },
+            {
+                test: /\.(ts|tsx)$/i,
+                exclude: ['/node_modules/'],
+                loader: 'babel-loader',
             },
             {
                 test: /\.(woff(2)?|eot|ttf|otf|ico|gif|png|jpg|jpeg)$/i,
