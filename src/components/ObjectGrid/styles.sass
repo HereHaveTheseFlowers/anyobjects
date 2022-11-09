@@ -1,11 +1,11 @@
 .object-grid
-    margin: 32px calc(24px - 16px) 0 24px
+    margin: $margin-normal calc($margin-small - $gap-normal) 0 $margin-small
     display: flex
     flex-wrap: wrap
-    gap: 16px
+    gap: $gap-normal
 
 .object-card
-    flex-basis: calc(33.333333% - 16px)
+    flex-basis: calc(33.333% - $gap-normal)
     position: relative
     cursor: pointer
 
