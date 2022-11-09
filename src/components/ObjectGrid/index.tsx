@@ -12,15 +12,15 @@ export class ObjectGrid extends React.Component {
     }
     filterUpdate() {
         const newfilter = store.getState().filter ? store.getState().filter : "ВСЁ"
-        const objects = document.querySelectorAll('.object');
+        const objects = document.querySelectorAll('.object-card');
         for(const object of objects) {
             const element = object as HTMLElement;
             if(!newfilter || newfilter === "ВСЁ") {
-                element.classList.remove('object_hidden');
+                element.classList.remove('object-card_hidden');
             } else if(element.dataset.category && element.dataset.category === newfilter) {
-                element.classList.remove('object_hidden');
+                element.classList.remove('object-card_hidden');
             } else {
-                element.classList.add('object_hidden');
+                element.classList.add('object-card_hidden');
             }
         }
     }
@@ -29,11 +29,11 @@ export class ObjectGrid extends React.Component {
         store.on('objects', () => {
             forceUpdate();
         });
-        let objectArray: Array<{ key: string; value: ObjectProps }> = [];
+        let objectArray: Array<{ key: string; value: ObjectCardProps }> = [];
         if(store.getState().objects && typeof store.getState().objects === 'object') {
             Object.entries(store.getState().objects).forEach(entry => {
                 const [key, value] = entry;
-                const object = { key: key, value: value as ObjectProps}
+                const object = { key: key, value: value as ObjectCardProps}
                 objectArray.push(object);
             })
             objectArray = objectArray.reverse();
@@ -45,7 +45,7 @@ export class ObjectGrid extends React.Component {
             <div className='object-grid'>
                 {
                     objectArray.map((object) => (
-                        <ObjectItem 
+                        <ObjectCard 
                             key={object.key}
                             objectkey={object.key}
                             name={object.value.name}
@@ -62,27 +62,27 @@ export class ObjectGrid extends React.Component {
     }
 }
 
-type ObjectProps = {
+type ObjectCardProps = {
     name: string;
+    brand: string;
+    price: string;
+    category: string;
     mainImage: string;
     previewImage: string;
-    price: string;
-    brand: string;
     objectkey: string;
-    category: string;
 }
 
-function ObjectItem(props: ObjectProps) {
+function ObjectCard(props: ObjectCardProps) {
     const navigate = useNavigate();
     const navigateObject = () => navigate(`${RouterList.OBJECT}/${props.objectkey}`);
     return (
-    <div className="object" onClick={navigateObject} data-category={props.category}>
-        <div className="object__card">
-            <span className="object__brand">{props.brand}</span>
-            <span className="object__name">{props.name}</span>
-            <span className="object__price">{props.price}₽</span>
+    <div className="object-card" onClick={navigateObject} data-category={props.category}>
+        <div className="object-card__info">
+            <span className="object-card__brand">{props.brand}</span>
+            <span className="object-card__name">{props.name}</span>
+            <span className="object-card__price">{props.price}₽</span>
         </div>
-        <img className="object__image" src={props.previewImage} alt="" draggable="false"/>
+        <img className="object-card__image" src={props.previewImage} alt="" draggable="false"/>
     </div>
     )
 }

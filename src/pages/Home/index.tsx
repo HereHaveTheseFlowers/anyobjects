@@ -1,8 +1,6 @@
 import { Footer, Header, Button, FiltersTab, ObjectGrid } from '../../components';
-import { fetchObjects } from '../../api/fetchObjects';
 
 export default function Home() {
-    fetchObjects();
 
     let lastScrollTimer = 0;
     window.onscroll = function() {

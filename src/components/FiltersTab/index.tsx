@@ -12,7 +12,6 @@ export function FiltersTab(props: FiltersTabProps) {
     stickyClass = ' filters-tab_position_sticky';
   }
   const navigate = useNavigate();
-  console.log('render')
   useEffect(() => {
     UpdateFiltersState();
   });
@@ -39,7 +38,7 @@ export function FiltersTab(props: FiltersTabProps) {
 }
 
 function UpdateFiltersState() {
-  console.log('FILTER IS NOW:' + store.getState().filter)
+  //console.log('FILTER IS NOW:' + store.getState().filter)
   const buttons = document.querySelectorAll('.filters-tab__filter')
   for(const button of buttons) {
     if(!store.getState().filter && button.textContent === 'ВСЁ') {

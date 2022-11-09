@@ -1,0 +1,63 @@
+.object
+    display: flex
+    gap: 16px
+    margin-top: 4vh // 32px for a 1440x800
+    margin-left: calc(3.85vw * 1) // 1/26 of the screen width
+    height: calc(68vh)
+    margin-right: calc(3.85vw * 5) // 5/26 of the screen width
+
+.object__image
+    width: calc(68vh)
+    height: calc(68vh)
+
+.object__card
+    width: calc(68vh)
+    height: calc(68vh)
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+.object__info
+    width: 100%
+    display: flex
+    flex-direction: column
+    gap: 4vh // 32px for a 1440x800
+
+.object__header
+    display: flex
+    flex-direction: column
+    gap: 4px
+    font-style: normal
+    font-weight: 500
+    font-size: 24px
+
+.object__name
+    color: $color-font-active
+
+.object__description 
+    font-style: normal
+    font-weight: 400
+    font-size: 16px
+    white-space: pre-wrap
+
+.object__additionalinfo
+    font-style: normal
+    font-weight: 400
+    font-size: 16px
+    white-space: pre-wrap
+
+.object__links
+    display: flex
+    flex-direction: column
+    gap: 4px
+    font-weight: 500
+    font-size: 18px
+
+.object__nav-button
+    font-style: normal
+    font-weight: 500
+    font-size: 18px
+    color: $color-font-active
+
+.object__nav-button:hover
+    color: $color-font
