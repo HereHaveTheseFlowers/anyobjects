@@ -9,7 +9,7 @@
     font-weight: bold;
     font-style: normal;
 }
-
+/* Not in use rn
 @font-face {
     font-family: 'CoFo Sans';
     src: url('CoFoSans-Black.eot');
@@ -21,7 +21,7 @@
     font-weight: 900;
     font-style: normal;
 }
-
+ */
 @font-face {
     font-family: 'CoFo Sans';
     src: url('CoFoSans-Regular.eot');
@@ -30,7 +30,7 @@
         url('CoFoSans-Regular.woff2') format('woff2'),
         url('CoFoSans-Regular.woff') format('woff'),
         url('CoFoSans-Regular.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 400;
     font-style: normal;
 }
 
@@ -46,6 +46,7 @@
     font-style: normal;
 }
 
+/* Not in use rn
 @font-face {
     font-family: 'CoFo Robert';
     src: url('CoFoRobert-RegularItalic.eot');
@@ -57,3 +58,4 @@
     font-weight: normal;
     font-style: italic;
 }
+ */
