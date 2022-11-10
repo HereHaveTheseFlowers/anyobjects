@@ -48,7 +48,7 @@ export default function About() {
                             ванна с пеной, баня, Россия, фильтр кофе, здание ЦГАКФФД СПб, раковины, syg.ma, церкви, тяжелое одеяло, скамить.
                         </span>
                         <span className="curators__favobject">
-                            ЛЮБИМЫЙ ОБЪЕКТ: <Anchor href='../object/2' className="curators__favobject-anchor">НАБОР ДРИПОВ VERLÉ</Anchor>
+                            ЛЮБИМЫЙ ОБЪЕКТ: <Anchor href='../object/3' className="curators__favobject-anchor">НАБОР ДРИПОВ VERLÉ</Anchor>
                         </span>
                     </div>
                 </article>

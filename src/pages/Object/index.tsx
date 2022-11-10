@@ -39,7 +39,7 @@ export default function Object() {
         return (
             <>
                 <Header logoSize='small' />
-                <FiltersTab noSticky={true} />
+                <FiltersTab noSticky={true} buttonBack={true} />
                 <section className="object">
                     <img src={currentObject.mainImage} alt={currentObject.altText} className="object__image" draggable="false" />
 					<div className="object__card">
@@ -64,7 +64,7 @@ export default function Object() {
     return (
         <>
 			<Header logoSize='small' />
-			<FiltersTab noSticky={true} />
+			<FiltersTab noSticky={true} buttonBack={true} />
         </>
     )
 }

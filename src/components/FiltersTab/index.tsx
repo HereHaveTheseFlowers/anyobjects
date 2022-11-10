@@ -4,9 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { RouterList } from '../../router/routerList';
 import { useEffect } from 'react';
 
-type FiltersTabProps = { noSticky?: boolean | string; }
+type FiltersTabProps = {
+  noSticky?: boolean | string;
+  buttonBack?: boolean;
+}
 
 export function FiltersTab(props: FiltersTabProps) {
+
   let stickyClass = '';
   if(!props.noSticky) {
     stickyClass = ' filters-tab_position_sticky';
@@ -15,6 +19,20 @@ export function FiltersTab(props: FiltersTabProps) {
   useEffect(() => {
     UpdateFiltersState();
   });
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
+  let buttonBack = null;
+  if(props.buttonBack) {
+    buttonBack = (
+      <button className="filters-tab__back-button" onClick={handleGoBack} aria-label="Иконка стрелочки назад">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20">
+          <path d="m.96 10 7.19-7.19L9.7 4.37 5.29 8.8h23.75v2.4H5.29l4.41 4.39-1.57 1.6L.96 10Z"/>
+        </svg>
+      </button>
+    )
+  }
 
   const applyFilter = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if(window.location.pathname !== '/') {
@@ -26,6 +44,7 @@ export function FiltersTab(props: FiltersTabProps) {
   };
   return (
     <div className={`filters-tab${stickyClass}`}>
+        {buttonBack}
         <span className="filters-tab__filters">
             <Button onClick={applyFilter} className='filters-tab__filter'>ВСЁ</Button>
             <Button onClick={applyFilter} className='filters-tab__filter'>ИНТЕРЬЕР</Button>
