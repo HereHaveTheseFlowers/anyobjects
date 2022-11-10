@@ -1,7 +1,6 @@
+
+# <p align="center">∀ ну</p>
 <p align="center">
-
-# ∀ ну
-
   <span>Русский</span> |
   <a href="https://github.com/herehavetheseflowers/anyobjects/blob/main/README.en.md">English</a>
 </p>
