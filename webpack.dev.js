@@ -68,13 +68,9 @@ module.exports = {
                 loader: 'babel-loader',
             },
             {
-                test: /\.(woff(2)?|eot|ttf|otf|ico|gif|png|jpg|jpeg|webmanifest)$/i,
+                test: /\.(svg|woff(2)?|eot|ttf|otf|ico|gif|png|jpg|jpeg|webmanifest)$/i,
                 type: 'asset/resource',
-            },
-            {
-                test: /\.(svg|)$/,
-                type: 'asset/inline',
-            },
+            }
         ],
     },
     resolve: {

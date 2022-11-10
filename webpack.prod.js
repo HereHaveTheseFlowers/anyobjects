@@ -62,13 +62,9 @@ module.exports = {
 
             },
             {
-                test: /\.(woff(2)?|eot|ttf|otf|ico|gif|png|jpg|jpeg|webmanifest)$/i,
+                test: /\.(svg|woff(2)?|eot|ttf|otf|ico|gif|png|jpg|jpeg|webmanifest)$/i,
                 type: 'asset/resource',
-            },
-            {
-                test: /\.(svg|)$/,
-                type: 'asset/inline',
-            },
+            }
         ],
     },
     optimization: {
