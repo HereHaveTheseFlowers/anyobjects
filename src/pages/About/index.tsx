@@ -11,7 +11,7 @@ export default function About() {
             <Header logoSize='small' />
             <FiltersTab noSticky={true} />
             <h1 className='about__h1'>
-                МЫ — АМБИЦИОЗНАЯ КОМАНДА ДИЗАЙНЕРОВ И ОКОЛО-ДИЗАЙНЕРОВ. 
+                МЫ — АМБИЦИОЗНАЯ КОМАНДА ДИЗАЙНЕРОВ И НЕ-ДИЗАЙНЕРОВ. 
                 МЫ ЛЮБИМ КРУТЫЕ РОССИЙСКИЕ ПРОЕКТЫ. 
                 НАША ЦЕЛЬ — НАСЫЩАТЬ КУЛЬТУРУ КРАСИВЫМ И ПОЛЕЗНЫМ. 
                 ВОТ НАШ  <Anchor href="http://normcultura.agency">САЙТ</Anchor>.
