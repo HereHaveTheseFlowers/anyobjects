@@ -58,6 +58,7 @@ export function FiltersTab(props: FiltersTabProps) {
 
 function UpdateFiltersState() {
   //console.log('FILTER IS NOW:' + store.getState().filter)
+  if(window.location.pathname === '/about') return;
   const buttons = document.querySelectorAll('.filters-tab__filter')
   for(const button of buttons) {
     if(!store.getState().filter && button.textContent === 'ВСЁ') {
