@@ -1,7 +1,7 @@
+
+
+# <p align="center">∀ny objects</p>
 <p align="center">
-
-# ∀ny objects
-
   <a href="https://github.com/herehavetheseflowers/anyobjects/blob/main/README.md">Русский</a> |
   <span>English</span>
 </p>
