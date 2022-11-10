@@ -4,15 +4,15 @@
     margin-top: $margin-normal
     margin-left: calc(3.85vw * 1) // 1/26 of the screen width
     height: calc(68vh)
-    margin-right: calc(3.85vw * 5) // 5/26 of the screen width
+    margin-right: calc(3.85vw * 5 - 20vh) // 5/26 of the screen width
 
 .object__image
-    width: calc(68vh)
-    height: calc(68vh)
+    width: 68vh
+    height: 68vh
 
 .object__card
-    width: calc(68vh)
-    height: calc(68vh)
+    width: calc(68vh + 20vh)
+    height: 68vh
     display: flex
     flex-direction: column
     justify-content: space-between
@@ -22,6 +22,7 @@
     display: flex
     flex-direction: column
     gap: $margin-normal
+    padding-right: 20vh
 
 .object__header
     display: flex
