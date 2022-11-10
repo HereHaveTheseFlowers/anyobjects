@@ -38,6 +38,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(sa|sc|c)ss$/i,
+                exclude: ['/node_modules/'],
                 use: [
                     // 3. Put everything into main.css and put a style tag into html
                     MiniCssExtractPlugin.loader,
