@@ -62,7 +62,7 @@ module.exports = {
 
             },
             {
-                test: /\.(woff(2)?|eot|ttf|otf|ico|gif|png|jpg|jpeg)$/i,
+                test: /\.(woff(2)?|eot|ttf|otf|ico|gif|png|jpg|jpeg|webmanifest)$/i,
                 type: 'asset/resource',
             },
             {
