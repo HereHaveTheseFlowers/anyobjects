@@ -37,7 +37,7 @@ type InputFieldProps = {
 FormModal.InputField = function FormInputField(props: InputFieldProps) {
   const { fieldTitle } = props;
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+  const handleChange = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     const InputElement = e.target;
     if(!InputElement) return;
     const formElement = InputElement.closest('form');
@@ -55,7 +55,7 @@ FormModal.InputField = function FormInputField(props: InputFieldProps) {
   return (
     <div className="inputfield">
       <span className="inputfield__title">{fieldTitle}</span>
-      <input {...props} className='inputfield__input' onBlur={handleBlur} />
+      <input {...props} className='inputfield__input' onChange={handleChange} />
     </div>
   )
 };
