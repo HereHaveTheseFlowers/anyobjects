@@ -1,0 +1,97 @@
+.modal
+    z-index: 5000
+    position: fixed
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    opacity: 0
+    pointer-events: none
+    transition: 0.4s
+
+.modal.active
+    opacity: 1
+    pointer-events: all
+
+.modal__bg
+    height: 100%
+    width: 100%
+    position: absolute
+    background-color: rgba($color-bg, 0.9)
+
+.form
+    z-index: 6000
+    width: 45.5vw
+    height: 44.7vh
+    background: $color-font-active
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: $margin-small
+    padding: 4.5vh $gap-normal 12vh $gap-normal
+
+.form__button-close
+    background: $color-bg
+    fill: $color-font-active
+    border: 0
+    padding: 3px
+    width: $margin-small
+    display: block
+    position: absolute
+    top: $gap-normal
+    right: $gap-normal
+    line-height: 0
+    cursor: pointer
+    transition: 0.1s
+
+.form__button-close:hover
+    fill: $color-font
+
+.form__button-submit
+    font-style: normal
+    font-weight: 500
+    font-size: 50px
+    color: rgba($color-bg, 0.5)
+    cursor: default
+    transition: 0.1s
+    position: absolute
+    bottom: $gap-normal
+
+.form__button-submit:hover
+    color: rgba($color-bg, 0.5)
+
+.form__button-submit_state_active
+    color: $color-bg
+    cursor: pointer
+
+.form__button-submit.form__button-submit_state_active:hover
+    color: $color-font
+
+.inputfield
+    width: 100%
+
+.inputfield__title
+    color: $color-bg
+    font-style: normal
+    font-weight: 500
+    font-size: 18px
+    padding-left: $margin-petite
+
+.inputfield__input
+    background: $color-bg
+    border: 0
+    outline: 0
+    box-shadow: none
+    height: $margin-normal
+    width: 100%
+    margin-top: $gap-small
+    font-family: 'CoFo Sans'
+    padding-left: $margin-petite
+    font-style: normal
+    font-weight: 500
+    font-size: 18px
+

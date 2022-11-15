@@ -88,3 +88,18 @@ export function vw(percent: number) {
   const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
   return (percent * w) / 100;
 }
+
+export function debounce(f: any, ms: number) {
+  let isCooldown = false;
+
+  return function() {
+    if (isCooldown) return false;
+
+    f.apply(this, arguments);
+
+    isCooldown = true;
+
+    setTimeout(() => isCooldown = false, ms);
+    return true;
+  };
+}
