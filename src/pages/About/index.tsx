@@ -70,22 +70,6 @@ export default function About() {
                         </span>
                     </div>
                 </article>
-                <article className='curators__profile'>
-                    <img src={frank} alt="Фрэнк" className="curators__avatar" draggable="false" />
-                    <div className="curators__info">
-                        <div className="curators__title">
-                            <span className="curators__name">ФРЭНК</span>
-                            <span className="curators__occupation">ДИЗАЙНЕР, МУЗЫКАНТ</span>
-                        </div>
-                        <span className="curators__description">
-                            Tumblr, Бейонсе, мальчики, украшения, скамить, лгбт права, одиночество, архитектура, 
-                            красивые лестницы, не дропать альбом, тачки, хайп, кокринг.
-                        </span>
-                        <span className="curators__favobject">
-                            ЛЮБИМЫЙ ОБЪЕКТ: <Anchor href='../object/1' className="curators__favobject-anchor">ЛИМОНАД ЛАПОЧКА МАНГО+ЧИЛИ</Anchor>
-                        </span>
-                    </div>
-                </article>
             </section>
             <Footer />
         </>
