@@ -39,9 +39,22 @@
 
 @font-face {
     font-family: 'CoFo Sans';
-    src: url('CoFoSans-Medium.otf');
+    src: url('CoFoSans-Medium.eot');
     src: local('CoFo Sans Medium'), local('CoFoSans-Medium'),
-        url('CoFoSans-Medium.woff') format('woff');
+        url('CoFoSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('CoFoSans-Medium.woff2') format('woff2'),
+        url('CoFoSans-Medium.woff') format('woff'),
+        url('CoFoSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'CoFo Sans ∀';
+    src: url('CoFoSans-A.otf');
+    src: local('CoFo Sans A'), local('CoFoSans-A'),
+        url('CoFoSans-A.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
