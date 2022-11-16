@@ -6,6 +6,7 @@ import { RouterList } from '../../router/routerList';
 import { useState } from 'react';
 import { validateForm, validateInput } from '../../utils/validate';
 import { debounce } from '../../utils/helpers';
+import emailjs from '@emailjs/browser';
 
 type HeaderProps = { 
     logoSize: 'small' | 'big';
@@ -36,8 +37,25 @@ export function Header(props: HeaderProps) {
     };
 
     const handleSendEmail: any = debounce((fd: FormData) => {
-        console.log('Sending emails isnt supproted yet. But heres the data:');
-        console.log(fd);
+        
+        const output: Record<string, string> = {};
+        for(const data of fd) {
+          output[data[0].toString()] = data[1].toString();
+        }
+        if(!output.objectname || !output.objectbrand || !output.objecturl) return;
+
+        const templateParams = {
+            objectName: output.objectname,
+            objectBrand: output.objectbrand,
+            objectLink: output.objecturl
+        };
+         
+        emailjs.send('service_asau0qg', 'template_s6uv5nb', templateParams, 'lDpH5yv2tTiYLE_8v')
+            .then(function(response) {
+               console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+               console.log('FAILED...', error);
+            });
     }, 2000)
 
     const handleSuggestObject = (e: React.FormEvent<HTMLFormElement>) => {

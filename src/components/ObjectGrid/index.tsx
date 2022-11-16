@@ -79,7 +79,6 @@ function ObjectCard(props: ObjectCardProps) {
     const navigate = useNavigate();
     const navigateObject = () => navigate(`${RouterList.OBJECT}/${props.objectkey}`);
     const objectImageSize =  ((vw(100) - vh(18)) / 3).toFixed(2);
-    console.log(objectImageSize)
     return (
     <div className="object-card" onClick={navigateObject} data-category={props.category}>
         <div className="object-card__info">

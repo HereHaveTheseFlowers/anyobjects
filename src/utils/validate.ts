@@ -1,6 +1,24 @@
 export function validateInput(input: any, inputName: string): boolean {
     if(!input) return false;
-    return true;
+
+    let pattern = /(.?)+/
+    switch(inputName) {
+        case "objectname":
+            pattern = /^.{1,20}$/
+            break;
+        case "objectbrand":
+            pattern = /^.{1,20}$/
+            break;
+        case "objecturl":
+            pattern = /^.{1,60}$/
+            break;
+    }
+
+    if(pattern.test(input)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 export function validateForm(formData: FormData): boolean {

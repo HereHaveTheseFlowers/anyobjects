@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { RouterList } from '../../router/routerList';
 
 function useForceUpdate(){
-    console.log(store.getState().objects)
     const [value, setValue] = useState(0);
     return () => setValue(value => value + 1);
 }

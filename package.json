@@ -52,6 +52,7 @@
     "webpack-dev-server": "4.11.1"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.9.1",
     "express": "^4.18.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",

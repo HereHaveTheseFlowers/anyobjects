@@ -5,11 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { RouterList } from '../../router/routerList';
 
 export default function Admin() {
-
-    const sendAuth = async (login: string, password: string) => {
-        console.log(123)
-    }
-
     
     const navigate = useNavigate();
 
