@@ -1,9 +1,8 @@
 import { Footer, Header, Button, Anchor, FiltersTab } from '../../components';
 import store from '../../utils/Store';
-import maers from '../../assets/img/maers.png';
-import evgeny from '../../assets/img/evgeny.png';
-import polin from '../../assets/img/polin.png';
-import frank from '../../assets/img/frank.png';
+import sievers from '../../assets/img/sievers.jpg';
+import polinchik from '../../assets/img/polinchik.jpg';
+import lomov from '../../assets/img/lomov.jpg';
 
 export default function About() {
     store.set('filter', 'ВСЁ')
@@ -22,7 +21,7 @@ export default function About() {
             </h1>
             <section className='curators'>
                 <article className='curators__profile'>
-                    <img src={maers} alt="Маша Сиверс" className="curators__avatar" draggable="false" />
+                    <img src={sievers} alt="Маша Сиверс" className="curators__avatar" draggable="false" />
                     <div className="curators__info">
                         <div className="curators__title">
                             <span className="curators__name">МАША СИВЕРС</span>
@@ -39,7 +38,7 @@ export default function About() {
                     </div>
                 </article>
                 <article className='curators__profile'>
-                    <img src={polin} alt="Полина" className="curators__avatar" draggable="false" />
+                    <img src={polinchik} alt="Полина" className="curators__avatar" draggable="false" />
                     <div className="curators__info">
                         <div className="curators__title">
                             <span className="curators__name">ПОЛИНА</span>
@@ -55,7 +54,7 @@ export default function About() {
                     </div>
                 </article>
                 <article className='curators__profile'>
-                    <img src={evgeny} alt="Женя" className="curators__avatar" draggable="false" />
+                    <img src={lomov} alt="Женя" className="curators__avatar" draggable="false" />
                     <div className="curators__info">
                         <div className="curators__title">
                             <span className="curators__name">ЖЕНЯ</span>
