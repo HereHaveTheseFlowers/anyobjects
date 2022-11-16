@@ -31,11 +31,11 @@ FormModal.ButtonSubmit = function FormButtonSubmit(props: ButtonProps) {
 };
 
 type InputFieldProps = {
-  fieldTitle: string;
+  fieldtitle: string;
 } & React.InputHTMLAttributes<HTMLInputElement>
 
 FormModal.InputField = function FormInputField(props: InputFieldProps) {
-  const { fieldTitle } = props;
+  const { fieldtitle } = props;
 
   const handleChange = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     const InputElement = e.target;
@@ -54,7 +54,7 @@ FormModal.InputField = function FormInputField(props: InputFieldProps) {
 
   return (
     <div className="inputfield">
-      <span className="inputfield__title">{fieldTitle}</span>
+      <span className="inputfield__title">{props.fieldtitle}</span>
       <input {...props} className='inputfield__input' onChange={handleChange} />
     </div>
   )

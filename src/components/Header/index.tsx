@@ -71,9 +71,9 @@ export function Header(props: HeaderProps) {
             <Button onClick={handleOpenForm}>ПРЕДЛОЖИТЬ ОБЪЕКТ</Button>
         </div>
         <FormModal active={isModalActive} setActive={setisModalActive} onSubmit={handleSuggestObject}>
-            <FormModal.InputField fieldTitle='НАЗВАНИЕ' name='objectname' type='text' autoComplete="off" />
-            <FormModal.InputField fieldTitle='БРЕНД' name='objectbrand' type='text' autoComplete="off" />
-            <FormModal.InputField fieldTitle='ССЫЛКА НА ОБЪЕКТ' name='objecturl' type='text' autoComplete="off" />
+            <FormModal.InputField fieldtitle='НАЗВАНИЕ' name='objectname' type='text' autoComplete="off" />
+            <FormModal.InputField fieldtitle='БРЕНД' name='objectbrand' type='text' autoComplete="off" />
+            <FormModal.InputField fieldtitle='ССЫЛКА НА ОБЪЕКТ' name='objecturl' type='text' autoComplete="off" />
             <FormModal.ButtonSubmit>ПРЕДЛОЖИТЬ ОБЪЕКТ</FormModal.ButtonSubmit>
         </FormModal>
     </header>

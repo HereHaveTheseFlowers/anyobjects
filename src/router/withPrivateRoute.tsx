@@ -1,16 +1,17 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { Loader } from '../components';
-//import { useAuth } from '../hooks/useAuth';
-import { RouterList } from './routerList';
+import store from '../utils/Store';
+import { useState } from 'react';
+
+function useForceUpdate(){
+    console.log(store.getState().objects)
+    const [value, setValue] = useState(0);
+    return () => setValue(value => value + 1);
+}
 
 export function withPrivateRoute(children: JSX.Element) {
-/*     const { isAuth, isLoadingAuth } = useAuth();
+    const forceUpdate = useForceUpdate();
+    const isAuth = store.getState().auth;
+    store.on('auth', forceUpdate);
 
-    if (isLoadingAuth) {
-        return <Loader />;
-    } */
-    const isAuth = true;
 
-    return isAuth ? children : <Navigate to={RouterList.ADMIN} replace />;
+    return isAuth ? children : <></>;
 }
