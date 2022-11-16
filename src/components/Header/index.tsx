@@ -30,8 +30,9 @@ export function Header(props: HeaderProps) {
 
     const [isModalActive, setisModalActive] = useState(false);
 
-    const handleOpenForm = () => {
-        setisModalActive(true)
+    const handleOpenForm = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        if(e.ctrlKey) { navigate(RouterList.ADMIN) }
+        else { setisModalActive(true) }
     };
 
     const handleSendEmail: any = debounce((fd: FormData) => {
