@@ -1,5 +1,7 @@
 import store from '../utils/Store';
 import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { RouterList } from './routerList';
 
 function useForceUpdate(){
     console.log(store.getState().objects)
@@ -13,5 +15,5 @@ export function withPrivateRoute(children: JSX.Element) {
     store.on('auth', forceUpdate);
 
 
-    return isAuth ? children : <></>;
+    return isAuth ? children : <Navigate to={'/'+RouterList.ADMIN} replace />;
 }
