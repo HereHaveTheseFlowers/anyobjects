@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import { Button, ButtonProps } from '../Button';
-import { validateForm, validateInput } from '../../utils/validate';
+import { validateForm } from '../../utils/validate';
 
 type Props = React.HTMLAttributes<HTMLElement> & {
   active: boolean;
@@ -18,7 +18,7 @@ export function FormModal(props: Props) {
       <div className='modal__bg' onClick={handleActive} />
       <form className='form' onSubmit={onSubmit}>
         {children}
-        <button className='form__button-close' type='button' onClick={handleActive}>
+        <button className='form__button-close' type='button' onClick={handleActive} aria-label="Иконка крестик закрыть">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 13.63 5.63 8 0 2.37 2.37 0 8 5.63 13.63 0l2.34 2.37-5.6 5.6L16 13.63 13.63 16 8 10.34l-5.63 5.63Z"/></svg>
         </button>
       </form>
@@ -35,8 +35,6 @@ type InputFieldProps = {
 } & React.InputHTMLAttributes<HTMLInputElement>
 
 FormModal.InputField = function FormInputField(props: InputFieldProps) {
-  const { fieldtitle } = props;
-
   const handleChange = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     const InputElement = e.target;
     if(!InputElement) return;
@@ -54,8 +52,8 @@ FormModal.InputField = function FormInputField(props: InputFieldProps) {
 
   return (
     <div className="inputfield">
-      <span className="inputfield__title">{props.fieldtitle}</span>
-      <input {...props} className='inputfield__input' onChange={handleChange} />
+      <label htmlFor={props.name} className="inputfield__title">{props.fieldtitle}</label>
+      <input {...props} id={props.name} className='inputfield__input' onChange={handleChange} />
     </div>
   )
 };
