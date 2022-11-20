@@ -13,9 +13,9 @@ export const fetchAuth = (login: string, password: string): Promise<any> => {
         xhr.onreadystatechange = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status < 400) {
-                    resolve({ response: xhr.response, data: xhr.status });
+                    resolve({ response: xhr.response, status: xhr.status });
                 } else {
-                    reject({ response: xhr.response, data: xhr.status });
+                    reject({ response: xhr.response, status: xhr.status });
                 }
             }
         };
