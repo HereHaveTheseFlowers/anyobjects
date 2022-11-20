@@ -24,10 +24,11 @@ export default function Admin() {
         if(!output.login || !output.password) return;
         fetchAuth(output.login, output.password)
             .then((data: any) => { 
-                if(data && data.message && data.phpKey && data.message === 'Access provided') {
+                if(data && data.message && data.message === 'Access provided') {
                     console.log('Logged in as admin!')
                     store.set('auth', 'admin')
                     store.set('phpKey', data.phpKey)
+                    console.log(data.phpKey)
                     navigate(RouterList.ADMIN_EDIT);
                 }
             });
