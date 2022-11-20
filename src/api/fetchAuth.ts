@@ -1,6 +1,6 @@
 import store from '../utils/Store';
 
-export const fetchAuth = (login: string, password: string): Promise<Response> => {
+export const fetchAuth = (login: string, password: string): Promise<any> => {
     return new Promise((resolve, reject) => {
         const params = {
             login: login,
@@ -13,9 +13,9 @@ export const fetchAuth = (login: string, password: string): Promise<Response> =>
         xhr.onreadystatechange = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status < 400) {
-                    resolve(xhr.response);
+                    resolve({ response: xhr.response, data: xhr.status });
                 } else {
-                    reject(xhr.response);
+                    reject({ response: xhr.response, data: xhr.status });
                 }
             }
         };
