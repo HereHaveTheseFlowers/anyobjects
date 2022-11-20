@@ -25,7 +25,7 @@ export default function Admin() {
         fetchAuth(output.login, output.password)
             .then((output: any) => { 
                 console.log(output)
-                if(output && output.status && output.status === '200') {
+                if(output && output.status && output.status == 200) {
                     console.log('Logged in as admin!')
                     store.set('auth', 'admin')
                     store.set('phpKey', output.response.message)
