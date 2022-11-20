@@ -25,7 +25,7 @@
 .form
     z-index: 6000
     width: 45.5vw
-    height: 44.7vh
+    //height: 44.7vh
     background: $color-font-active
     position: relative
     display: flex
@@ -33,6 +33,14 @@
     align-items: center
     gap: $margin-small
     padding: 4.5vh $gap-normal 12vh $gap-normal
+    color: $color-bg
+    font-style: normal
+    font-weight: 500
+    font-size: 18px
+    &__admin
+        gap: normal
+        transform: scale(0.9)
+        justify-content: space-between
 
 .form__button-close
     background: $color-bg
@@ -75,10 +83,6 @@
     width: 100%
 
 .inputfield__title
-    color: $color-bg
-    font-style: normal
-    font-weight: 500
-    font-size: 18px
     padding-left: $margin-petite
 
 .inputfield__input
@@ -95,3 +99,5 @@
     font-weight: 500
     font-size: 18px
 
+.inputfield__input::file-selector-button
+    display: none

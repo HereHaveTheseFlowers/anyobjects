@@ -30,6 +30,12 @@ module.exports = {
                         return `objects/${path.relative(context, absoluteFilename)}`;
                     },
                     from: 'public/objects' 
+                },
+                { 
+                    to({ context, absoluteFilename }) {
+                        return `frankocean/${path.relative(context, absoluteFilename)}`;
+                    },
+                    from: 'public/frankocean' 
                 }
             ]
         }),

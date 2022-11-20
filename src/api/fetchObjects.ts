@@ -1,6 +1,6 @@
 import store from '../utils/Store';
 
-type ObjectApiProps = {
+export type ObjectProps = {
     name: string;
     brand: string;
     price: string;
@@ -27,7 +27,7 @@ export const fetchObjects = () => {
                     request.send();
                     request.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
-                            const jsonData: ObjectApiProps = JSON.parse(request.responseText);
+                            const jsonData: ObjectProps = JSON.parse(request.responseText);
                             jsonData['mainImage'] = `${window.location.origin}/objects/${objectpath}/main.png`
                             jsonData['previewImage'] = `${window.location.origin}/objects/${objectpath}/preview.png`
                             store.set(`objects.${objectpath}`, jsonData)

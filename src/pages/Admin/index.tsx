@@ -8,6 +8,10 @@ export default function Admin() {
     
     const navigate = useNavigate();
 
+    const navigateHome = () => {
+        navigate(RouterList.HOME);
+    };
+
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if(!e.target) return;
@@ -20,9 +24,10 @@ export default function Admin() {
         if(!output.login || !output.password) return;
         fetchAuth(output.login, output.password)
             .then((data: any) => { 
-                if(data && data.message && data.message === 'Access provided') {
+                if(data && data.message && data.phpKey && data.message === 'Access provided') {
                     console.log('Logged in as admin!')
                     store.set('auth', 'admin')
+                    store.set('phpKey', data.phpKey)
                     navigate(RouterList.ADMIN_EDIT);
                 }
             });
@@ -31,6 +36,7 @@ export default function Admin() {
     return (
         <>
             <div className='admin'>
+                <Button onClick={navigateHome} className='admin__gohome'>ГО НА ГЛАВНУЮ</Button>
                 <form className='admin__form form' onSubmit={onSubmit}>
                     <div className="inputfield">
                         <span className="inputfield__title">ЛОГИН</span>
