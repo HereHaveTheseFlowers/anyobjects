@@ -8,6 +8,18 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { fetchObjects } from './api/fetchObjects';
 
+/* Mobile viewport height hack */
+let timeoutId: NodeJS.Timeout | null = null;
+const documentHeight = () => {
+  if(timeoutId) clearTimeout(timeoutId); // avoid execution of previous timeouts
+  timeoutId = setTimeout(() => {
+   const doc = document.documentElement;
+   doc.style.setProperty('--doc-height', `${window.innerHeight}px`);
+  }, 200);
+};
+documentHeight();
+window.addEventListener('resize', documentHeight);
+
 fetchObjects();
 
 ReactDOM.createRoot(document.getElementById('root')).render(

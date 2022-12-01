@@ -89,12 +89,12 @@ function ObjectCard(props: ObjectCardProps) {
     if(props.mode !== 'admin') {
         return (
         <div className="object-card" onClick={navigateObject} data-category={props.category}>
+            <img className="object-card__image" src={props.previewImage} alt={props.altText} draggable="false" width={objectImageSize} height={objectImageSize} />
             <div className="object-card__info">
                 <span className="object-card__brand">{props.brand}</span>
                 <span className="object-card__name">{props.name}</span>
                 <span className="object-card__price">{props.price}₽</span>
             </div>
-            <img className="object-card__image" src={props.previewImage} alt={props.altText} draggable="false" width={objectImageSize} height={objectImageSize} />
         </div>
         )
     } else {

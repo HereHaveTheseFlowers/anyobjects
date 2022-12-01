@@ -25,7 +25,6 @@
 .form
     z-index: 6000
     width: 45.5vw
-    //height: 44.7vh
     background: $color-font-active
     position: relative
     display: flex
@@ -37,6 +36,8 @@
     font-style: normal
     font-weight: 500
     font-size: 18px
+    @media screen and (max-width: 768px) // tablet
+        width: 70vw
     &__admin
         gap: normal
         transform: scale(0.9)
@@ -47,7 +48,7 @@
     fill: $color-font-active
     border: 0
     padding: 3px
-    width: $margin-small
+    width: 22px
     display: block
     position: absolute
     top: $gap-normal
@@ -68,6 +69,8 @@
     transition: 0.1s
     position: absolute
     bottom: $gap-normal
+    @media screen and (max-width: 768px) // tablet
+        font-size: 41px
 
 .form__button-submit:hover
     color: rgba($color-bg, 0.5)
@@ -90,14 +93,16 @@
     border: 0
     outline: 0
     box-shadow: none
-    height: $margin-normal
+    height: 32px
     width: 100%
     margin-top: $gap-small
     font-family: 'CoFo Sans'
-    padding-left: $margin-petite
+    padding-left: 8px
     font-style: normal
     font-weight: 500
     font-size: 18px
+    @media screen and (max-width: 768px) // tablet
+        margin-top: $margin-petite
 
 .inputfield__input::file-selector-button
     display: none

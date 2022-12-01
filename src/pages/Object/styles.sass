@@ -5,10 +5,18 @@
     margin-left: calc(3.85vw * 1) // 1/26 of the screen width
     height: calc(68vh)
     margin-right: calc(3.85vw * 5 - 20vh) // 5/26 of the screen width
+    @media screen and (max-width: 768px) // tablet
+        margin: calc($margin-normal * 4) 0 0 0
+        width: auto
+        height: auto
 
 .object__image
     width: 68vh
     height: 68vh
+    @media screen and (max-width: 768px) // tablet
+        width: 50%
+        height: 50%
+        flex-basis: 50%
 
 .object__card
     width: calc(68vh + 20vh)
@@ -16,6 +24,10 @@
     display: flex
     flex-direction: column
     justify-content: space-between
+    @media screen and (max-width: 768px) // tablet
+        width: auto
+        height: 100%
+        flex-basis: 50%
 
 .object__info
     width: 100%
@@ -23,6 +35,8 @@
     flex-direction: column
     gap: $margin-normal
     padding-right: 20vh
+    @media screen and (max-width: 768px) // tablet
+        padding-right: 0
 
 .object__header
     display: flex
@@ -53,6 +67,10 @@
     gap: $gap-small
     font-weight: 500
     font-size: 18px
+    @media screen and (max-width: 768px) // tablet
+        width: 100%
+        margin-top: calc($margin-normal * 2.5)
+        margin-bottom: calc($margin-normal * 11)
 
 .object__nav-button
     font-style: normal

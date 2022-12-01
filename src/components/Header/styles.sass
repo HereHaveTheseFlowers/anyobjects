@@ -17,18 +17,25 @@
 
 .header__menu_right
     right: 0
+    @media screen and (max-width: 768px) // tablet
+        width: 16.25vw
+        .button
+            text-align: right
 
 .header__logo
     user-select: none
     fill: $color-logo
-    -webkit-transform: translate3d(0,0,0)
     cursor: pointer
 
 .header__logo_small
     width: 30vw
+    @media screen and (max-width: 768px) // tablet
+        width: 47vw
 
 .header__logo_big
     width: 60vw
+    @media screen and (max-width: 768px) // tablet
+        width: 47vw
 
 .header__menu-anchor
     color: $color-font

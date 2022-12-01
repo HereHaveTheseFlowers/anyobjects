@@ -1,9 +1,12 @@
 .home__h1
-    margin: $margin-normal $margin-small 0 $margin-small
     text-align: center
     font-style: normal
     font-weight: 500
+    margin: $margin-normal $margin-small 0 $margin-small
     font-size: 50px
+    @media screen and (max-width: 768px) // tablet
+        margin: calc($margin-normal + $gap-normal) 0 0 0
+        font-size: 26px
 
 .home__arrow
     position: fixed

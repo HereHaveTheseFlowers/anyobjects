@@ -18,9 +18,21 @@
 
 html
     scroll-behavior: smooth
+    --doc-height: 100vh // fallback for documentHeight
+    --margin-normal: calc(4 * var(--doc-height) / 100)
+    --margin-small: calc(3 * var(--doc-height) / 100)
+    --margin-petite: calc(1 * var(--doc-height) / 100)
+    --gap-normal: calc(2 * var(--doc-height) / 100)
+    --gap-small: calc(0.5 * var(--doc-height) / 100)
+    @media screen and (max-width: 768px) // tablet
+        --margin-normal: 16px
+        --margin-small: 12px
+        --margin-petite: 4px
+        --gap-normal: 8px
+        --gap-small: 2px
 
 body
-    padding: $margin-normal $margin-normal 0 $margin-normal
+    padding: var(--margin-normal) var(--margin-normal) 0 var(--margin-normal)
     background: $color-bg
 
 .∀-fix
@@ -34,6 +46,9 @@ body
 div#root
     font-family: 'CoFo Sans', Arial, sans-serif
     -webkit-font-smoothing: antialiased
+
+svg
+    -webkit-transform: translate3d(0,0,0)
 
 *::selection
     color: $color-bg

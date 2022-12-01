@@ -4,11 +4,18 @@
     flex-wrap: wrap
     gap: $gap-normal
     width: calc(100vw - 14vh) // calc(100vw - ($margin-small *2) - ($margin-normal *2))
+    @media screen and (max-width: 768px) // tablet
+        margin: calc($margin-normal + $gap-normal) 0 0 0
+        width: 100%
 
 .object-card
     flex-basis: calc(33.333% - $gap-normal)
     position: relative
     cursor: pointer
+    @media screen and (max-width: 768px) // tablet
+        flex-basis: calc(50% - $gap-normal)
+        height: 120%
+        margin-bottom: calc(var(--margin-normal) * 3)
     &_mode_admin
         cursor: auto
         flex-basis: 100%
@@ -43,6 +50,11 @@
     line-height: 20px
     text-align: center
     transition: opacity 0.1s
+    top: 0
+    @media screen and (max-width: 768px) // tablet
+        top: 0
+        position: relative
+        opacity: 1
     &_mode_admin
         background: $color-font-active
         opacity: 1

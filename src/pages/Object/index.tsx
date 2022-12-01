@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { Header, FiltersTab, Anchor, Button } from '../../components';
+import { Header, FiltersTab, Anchor, Button, Footer } from '../../components';
 import store from '../../utils/Store';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -35,6 +35,9 @@ export default function Object() {
             store.set("filter", currentObject.category);
             navigate(RouterList.HOME);
         }
+
+        const isTablet: boolean = window.matchMedia('(max-device-width: 768px)').matches;
+
         return (
             <>
                 <Header logoSize='small' />
@@ -51,12 +54,24 @@ export default function Object() {
 							<span className="object__description">{currentObject.description}</span>
 							<span className="object__additionalinfo">{currentObject.additionalInfo}</span>
 						</div>
-						<div className="object__links">
-							<span className="object__url">КУПИТЬ НА САЙТЕ <Anchor href={currentObject.url}>{currentObject.urlText}</Anchor></span>
-							<span className="object__nav">СМОТРЕТЬ ВСЕ ОБЪЕКТЫ ИЗ КАТЕГОРИИ <Button className="object__nav-button" onClick={handleNavigateCategory}>{currentObject.category}</Button></span>
-						</div>
+                        { !isTablet &&
+                            <div className="object__links">
+                                <span className="object__url">КУПИТЬ НА САЙТЕ <Anchor href={currentObject.url}>{currentObject.urlText}</Anchor></span>
+                                <span className="object__nav">СМОТРЕТЬ ВСЕ ОБЪЕКТЫ ИЗ КАТЕГОРИИ <Button className="object__nav-button" onClick={handleNavigateCategory}>{currentObject.category}</Button></span>
+                            </div> 
+                        }
 					</div>
                 </section>
+                { isTablet &&
+                    <div className="object__links">
+                        <span className="object__url">КУПИТЬ НА САЙТЕ <Anchor href={currentObject.url}>{currentObject.urlText}</Anchor></span>
+                        <span className="object__nav">СМОТРЕТЬ ВСЕ ОБЪЕКТЫ ИЗ КАТЕГОРИИ <Button className="object__nav-button" onClick={handleNavigateCategory}>{currentObject.category}</Button></span>
+                    </div>
+                }
+                {    
+                    isTablet &&
+                    <Footer /> 
+                }
             </>
         )
     }

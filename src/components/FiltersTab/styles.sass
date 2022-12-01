@@ -2,8 +2,10 @@
     width: 100%
     display: flex
     justify-content: center
-    margin-top: $margin-normal
     z-index: 4000
+    margin-top: $margin-normal
+    @media screen and (max-width: 768px) // tablet
+        margin-top: calc($margin-normal + $gap-normal)
 
 .filters-tab_position_sticky
     position: sticky
