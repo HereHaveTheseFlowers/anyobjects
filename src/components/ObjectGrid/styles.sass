@@ -4,18 +4,24 @@
     flex-wrap: wrap
     gap: $gap-normal
     width: calc(100vw - 14vh) // calc(100vw - ($margin-small *2) - ($margin-normal *2))
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet) // tablet
         margin: calc($margin-normal + $gap-normal) 0 0 0
         width: 100%
+    @media screen and (max-width: $breakpoint-phone) // phone
+        margin: $gap-small 0 calc(var(--margin-normal) * 3.5) 0
+        gap: calc(var(--margin-normal) * 2.5)
 
 .object-card
     flex-basis: calc(33.333% - $gap-normal)
     position: relative
     cursor: pointer
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet)
         flex-basis: calc(50% - $gap-normal)
         height: 120%
         margin-bottom: calc(var(--margin-normal) * 3)
+    @media screen and (max-width: $breakpoint-phone)
+        flex-basis: 100%
+        margin-bottom: 0
     &_mode_admin
         cursor: auto
         flex-basis: 100%
@@ -51,7 +57,7 @@
     text-align: center
     transition: opacity 0.1s
     top: 0
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet)
         top: 0
         position: relative
         opacity: 1

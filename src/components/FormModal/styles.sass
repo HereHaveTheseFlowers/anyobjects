@@ -36,8 +36,12 @@
     font-style: normal
     font-weight: 500
     font-size: 18px
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet) // tablet
         width: 70vw
+        padding: 30px $gap-normal 68px $gap-normal
+    @media screen and (max-width: $breakpoint-phone)
+        width: 92vw
+        padding: 30px $gap-normal 51px $gap-normal
     &__admin
         gap: normal
         transform: scale(0.9)
@@ -69,8 +73,10 @@
     transition: 0.1s
     position: absolute
     bottom: $gap-normal
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet)
         font-size: 41px
+    @media screen and (max-width: $breakpoint-phone)
+        font-size: 28px
 
 .form__button-submit:hover
     color: rgba($color-bg, 0.5)
@@ -87,6 +93,8 @@
 
 .inputfield__title
     padding-left: $margin-petite
+    @media screen and (max-width: $breakpoint-tablet)
+        padding-left: $gap-normal
 
 .inputfield__input
     background: $color-bg
@@ -101,7 +109,7 @@
     font-style: normal
     font-weight: 500
     font-size: 18px
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet) // tablet
         margin-top: $margin-petite
 
 .inputfield__input::file-selector-button

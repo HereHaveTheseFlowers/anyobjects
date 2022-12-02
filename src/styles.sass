@@ -24,7 +24,13 @@ html
     --margin-petite: calc(1 * var(--doc-height) / 100)
     --gap-normal: calc(2 * var(--doc-height) / 100)
     --gap-small: calc(0.5 * var(--doc-height) / 100)
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet) // tablet
+        --margin-normal: 16px
+        --margin-small: 12px
+        --margin-petite: 4px
+        --gap-normal: 8px
+        --gap-small: 2px
+    @media screen and (max-width: $breakpoint-phone) // phone
         --margin-normal: 16px
         --margin-small: 12px
         --margin-petite: 4px

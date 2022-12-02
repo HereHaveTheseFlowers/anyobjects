@@ -36,7 +36,8 @@ export default function Object() {
             navigate(RouterList.HOME);
         }
 
-        const isTablet: boolean = window.matchMedia('(max-device-width: 768px)').matches;
+        const isTablet: boolean = window.matchMedia('(max-device-width: 1024px)').matches;
+        const isMobile: boolean = window.matchMedia('(max-device-width: 480px)').matches;
 
         return (
             <>
@@ -54,7 +55,7 @@ export default function Object() {
 							<span className="object__description">{currentObject.description}</span>
 							<span className="object__additionalinfo">{currentObject.additionalInfo}</span>
 						</div>
-                        { !isTablet &&
+                        { (!isTablet || isMobile) &&
                             <div className="object__links">
                                 <span className="object__url">КУПИТЬ НА САЙТЕ <Anchor href={currentObject.url}>{currentObject.urlText}</Anchor></span>
                                 <span className="object__nav">СМОТРЕТЬ ВСЕ ОБЪЕКТЫ ИЗ КАТЕГОРИИ <Button className="object__nav-button" onClick={handleNavigateCategory}>{currentObject.category}</Button></span>
@@ -62,14 +63,14 @@ export default function Object() {
                         }
 					</div>
                 </section>
-                { isTablet &&
+                { isTablet && !isMobile &&
                     <div className="object__links">
                         <span className="object__url">КУПИТЬ НА САЙТЕ <Anchor href={currentObject.url}>{currentObject.urlText}</Anchor></span>
                         <span className="object__nav">СМОТРЕТЬ ВСЕ ОБЪЕКТЫ ИЗ КАТЕГОРИИ <Button className="object__nav-button" onClick={handleNavigateCategory}>{currentObject.category}</Button></span>
                     </div>
                 }
                 {    
-                    isTablet &&
+                    isTablet && !isMobile &&
                     <Footer /> 
                 }
             </>

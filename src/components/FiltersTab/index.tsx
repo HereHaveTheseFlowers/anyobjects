@@ -42,16 +42,29 @@ export function FiltersTab(props: FiltersTabProps) {
     store.set("filter", element.textContent);
     UpdateFiltersState();
   };
+
+  const isMobile: boolean = window.matchMedia('(max-device-width: 480px)').matches;
+
   return (
     <div className={`filters-tab${stickyClass}`}>
-        {buttonBack}
+        { !isMobile && buttonBack }
         <span className="filters-tab__filters">
             <Button onClick={applyFilter} className='filters-tab__filter'>ВСЁ</Button>
             <Button onClick={applyFilter} className='filters-tab__filter'>ИНТЕРЬЕР</Button>
             <Button onClick={applyFilter} className='filters-tab__filter'>ГИГИЕНА</Button>
-            <Button onClick={applyFilter} className='filters-tab__filter'>ОДЕЖДА И АКСЕССУАРЫ</Button>
-            <Button onClick={applyFilter} className='filters-tab__filter'>ЕДА</Button>
+            { !isMobile && 
+              <>
+                <Button onClick={applyFilter} className='filters-tab__filter'>ОДЕЖДА И АКСЕССУАРЫ</Button>
+                <Button onClick={applyFilter} className='filters-tab__filter'>ЕДА</Button>
+              </>
+            }
         </span>
+        { isMobile && 
+          <span className="filters-tab__filters">
+              <Button onClick={applyFilter} className='filters-tab__filter'>ОДЕЖДА И АКСЕССУАРЫ</Button>
+              <Button onClick={applyFilter} className='filters-tab__filter'>ЕДА</Button>
+          </span>
+        }
     </div>
   );
 }

@@ -4,7 +4,7 @@
     font-style: normal
     font-weight: 500
     font-size: 50px
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet)
         font-size: 26px
         margin: calc($margin-normal + $gap-normal) 0 0 0
 
@@ -14,9 +14,11 @@
     display: flex
     flex-direction: column
     gap: 40px
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet)
         margin-top: calc($margin-normal * 2)
         margin-bottom: calc($margin-normal * 3.5)
+    @media screen and (max-width: $breakpoint-phone)
+        gap: 32px
 
 .curators__profile
     display: flex
@@ -25,12 +27,23 @@
 .curators__avatar
     width: 96px
     height: 96px
+    @media screen and (max-width: $breakpoint-tablet)
+        width: 79px
+        height: 79px
+    @media screen and (max-width: $breakpoint-phone)
+        width: 53px
+        height: 53px
 
 .curators__info
     display: flex
     flex-direction: column
     gap: $gap-normal
     width: 543px
+    @media screen and (max-width: $breakpoint-tablet)
+        gap: $margin-normal
+    @media screen and (max-width: $breakpoint-phone)
+        gap: $gap-normal
+        width: 100%
 
 .curators__title
     display: flex
@@ -39,6 +52,10 @@
     font-style: normal
     font-weight: 500
     font-size: 24px
+    @media screen and (max-width: $breakpoint-tablet)
+        gap: $margin-petite
+    @media screen and (max-width: $breakpoint-phone)
+        gap: 0
 
 .curators__name
     color: $color-font-active
@@ -50,6 +67,8 @@
     font-style: normal
     font-weight: 400
     font-size: 16px
+    @media screen and (max-width: $breakpoint-phone)
+        font-size: 14px
 
 .curators__favobject
     font-style: normal
@@ -58,6 +77,10 @@
 
 .curators__favobject-anchor
     color: $color-font
+    @media screen and (max-width: $breakpoint-tablet)
+        color: $color-font-active
     
 .curators__favobject-anchor:hover
     color: $color-font-active
+    @media screen and (max-width: $breakpoint-tablet)
+        color: $color-font

@@ -4,8 +4,12 @@
     justify-content: center
     z-index: 4000
     margin-top: $margin-normal
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet) // tablet
         margin-top: calc($margin-normal + $gap-normal)
+    @media screen and (max-width: $breakpoint-phone) // phone
+        flex-direction: column
+        align-items: center
+        gap: $gap-normal
 
 .filters-tab_position_sticky
     position: sticky
@@ -24,6 +28,10 @@
     fill: $color-font
     background: none
     border: 0
+    @media screen and (max-width: $breakpoint-phone)
+        position: relative
+        margin: $margin-normal 0 0 0
+        left: 0
 
 .filters-tab__back-button:hover
     fill: $color-font-active

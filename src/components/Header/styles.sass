@@ -4,20 +4,26 @@
     align-items: flex-start
     justify-content: center
     position: relative
+    @media screen and (max-width: $breakpoint-phone) // phone
+        flex-direction: column
 
 .header__menu
     position: absolute
     display: flex
     flex-direction: column
     align-items: flex-start
+    @media screen and (max-width: $breakpoint-phone) // phone
+        position: relative
     
 .header__menu_left
     left: 0
     gap: $gap-small
+    @media screen and (max-width: $breakpoint-tablet) // tablet
+        gap: $margin-petite
 
 .header__menu_right
     right: 0
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet) // tablet
         width: 16.25vw
         .button
             text-align: right
@@ -26,16 +32,22 @@
     user-select: none
     fill: $color-logo
     cursor: pointer
+    @media screen and (max-width: $breakpoint-phone) // phone
+        margin-top: calc($margin-normal + $gap-normal)
 
 .header__logo_small
     width: 30vw
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet) // tablet
         width: 47vw
+    @media screen and (max-width: $breakpoint-phone) // phone
+        width: 100%
 
 .header__logo_big
     width: 60vw
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet) // tablet
         width: 47vw
+    @media screen and (max-width: $breakpoint-phone) // phone
+        width: 100%
 
 .header__menu-anchor
     color: $color-font

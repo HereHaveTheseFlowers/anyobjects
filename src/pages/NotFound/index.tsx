@@ -11,7 +11,7 @@ export default function NotFound() {
     navigate(RouterList.HOME);
   };
 
-  const isTablet: boolean = window.matchMedia('(max-device-width: 768px)').matches;
+  const isTablet: boolean = window.matchMedia('(max-device-width: 1024px)').matches;
 
   return (
     <>

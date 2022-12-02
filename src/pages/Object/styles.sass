@@ -5,18 +5,26 @@
     margin-left: calc(3.85vw * 1) // 1/26 of the screen width
     height: calc(68vh)
     margin-right: calc(3.85vw * 5 - 20vh) // 5/26 of the screen width
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet)
         margin: calc($margin-normal * 4) 0 0 0
         width: auto
         height: auto
+    @media screen and (max-width: $breakpoint-phone)
+        margin: calc($margin-normal * 2.5) 0 0 0
+        flex-direction: column
+        gap: $margin-normal
 
 .object__image
     width: 68vh
     height: 68vh
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet) // tablet
         width: 50%
         height: 50%
         flex-basis: 50%
+    @media screen and (max-width: $breakpoint-phone)
+        width: 100%
+        height: auto
+        flex-basis: 100%
 
 .object__card
     width: calc(68vh + 20vh)
@@ -24,7 +32,7 @@
     display: flex
     flex-direction: column
     justify-content: space-between
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet) // tablet
         width: auto
         height: 100%
         flex-basis: 50%
@@ -35,7 +43,7 @@
     flex-direction: column
     gap: $margin-normal
     padding-right: 20vh
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet) // tablet
         padding-right: 0
 
 .object__header
@@ -45,6 +53,8 @@
     font-style: normal
     font-weight: 500
     font-size: 24px
+    @media screen and (max-width: $breakpoint-phone)
+        gap: $margin-petite
 
 .object__name
     color: $color-font-active
@@ -54,6 +64,8 @@
     font-weight: 400
     font-size: 16px
     white-space: pre-wrap
+    @media screen and (max-width: $breakpoint-phone)
+        font-size: 14px
 
 .object__additionalinfo
     font-style: normal
@@ -67,10 +79,13 @@
     gap: $gap-small
     font-weight: 500
     font-size: 18px
-    @media screen and (max-width: 768px) // tablet
+    @media screen and (max-width: $breakpoint-tablet) // tablet
         width: 100%
         margin-top: calc($margin-normal * 2.5)
         margin-bottom: calc($margin-normal * 11)
+    @media screen and (max-width: $breakpoint-phone)
+        margin-top: $margin-normal
+        margin-bottom: calc($margin-normal * 2.5)
 
 .object__nav-button
     font-style: normal
