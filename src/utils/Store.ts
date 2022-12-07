@@ -24,6 +24,8 @@ const store = new Store();
 store.set("auth", 'admin');
 store.set("phpKey", 'frankocean');
 
+
+
 // @ts-ignore
 //window.store = store;
 

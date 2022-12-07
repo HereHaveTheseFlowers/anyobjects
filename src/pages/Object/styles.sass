@@ -14,6 +14,9 @@
         flex-direction: column
         gap: $margin-normal
 
+.object_responsive_mobile
+    width: calc(100vw - ($margin-normal * 2))
+
 .object__image
     width: 68vh
     height: 68vh
@@ -25,6 +28,9 @@
         width: 100%
         height: auto
         flex-basis: 100%
+
+.object__image_loaded
+    animation: 0.2s ease 1 fadein
 
 .object__card
     width: calc(68vh + 20vh)

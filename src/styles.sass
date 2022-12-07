@@ -18,7 +18,6 @@
 
 html
     scroll-behavior: smooth
-    --doc-height: 100vh // fallback for documentHeight
     --margin-normal: calc(4 * var(--doc-height) / 100)
     --margin-small: calc(3 * var(--doc-height) / 100)
     --margin-petite: calc(1 * var(--doc-height) / 100)
@@ -55,6 +54,54 @@ div#root
 
 svg
     -webkit-transform: translate3d(0,0,0)
+
+.skeleton-box
+    height: 20px
+    margin: 2px 0
+    overflow: hidden
+    background-color: $color-skeleton
+    border-radius: 2px
+    position: relative
+    &::after
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        transform: translateX(-100%)
+        background-image: linear-gradient( 90deg, rgba(#fff, 0) 0, rgba(#fff, 0.2) 20%, rgba(#fff, 0.5) 60%, rgba(#fff, 0))
+        animation: shimmer 2s infinite
+        content: ''
+
+.skeleton-image
+    background-color: $color-skeleton
+    border-radius: 2px
+    aspect-ratio: 1 / 1
+    flex-basis: 50%
+    overflow: hidden
+    position: relative
+    &::after
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        transform: translateX(-100%)
+        background-image: linear-gradient( 90deg, rgba(#fff, 0) 0, rgba(#fff, 0.2) 20%, rgba(#fff, 0.5) 60%, rgba(#fff, 0))
+        animation: shimmer 2s infinite
+        content: ''
+
+@keyframes shimmer
+    100%
+        transform: translateX(100%)
+
+.image_visibility_hidden
+    visibility: hidden
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
 
 *::selection
     color: $color-bg

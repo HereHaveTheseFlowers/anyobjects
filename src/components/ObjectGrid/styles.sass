@@ -35,9 +35,21 @@
     height: 100%
     user-drag: none
     user-select: none
+    //transition: filter 0.5s linear, opacity 0.5s linear
     &_mode_admin
         width: auto
         height: auto
+
+.object-card__image_loaded
+    animation: 0.2s ease 1 fadein
+    
+@keyframes fadein
+  0%
+    opacity: 0
+    filter: blur(10px)
+  100%
+    opacity: 1
+    filter: blur(0px)
     
 .object-card__info
     width: 100%
@@ -55,7 +67,6 @@
     font-size: 16px
     line-height: 20px
     text-align: center
-    transition: opacity 0.1s
     top: 0
     @media screen and (max-width: $breakpoint-tablet)
         top: 0
@@ -69,7 +80,11 @@
         width: 50%
     
 .object-card__info:hover
+    transition: opacity 0.1s
     opacity: 1
+
+.object-card__info_fadeout
+    opacity: 0 !important
 
 .object-card__brand
     font-size: 19px

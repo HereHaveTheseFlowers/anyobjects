@@ -6,7 +6,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { fetchObjects } from './api/fetchObjects';
+import { fetchObjects, ObjectProps } from './api/fetchObjects';
+import store from './utils/Store';
 
 /* Mobile viewport height hack */
 let timeoutId: NodeJS.Timeout | null = null;
@@ -19,6 +20,23 @@ const documentHeight = () => {
 };
 documentHeight();
 window.addEventListener('resize', documentHeight);
+
+for(let i = 1; i <= 9; i++) {
+  const mockupObject: ObjectProps = {
+    name: '',
+    brand: '',
+    price: '',
+    category: '',
+    description: '',
+    additionalInfo: '',
+    url: '',
+    urlText: '',
+    altText: '',
+    mainImage: '',
+    previewImage: ''
+  }
+  store.set(`objects.${i}`, mockupObject);
+}
 
 fetchObjects();
 
