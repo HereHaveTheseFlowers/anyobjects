@@ -25,6 +25,8 @@ export function validateInput(input: any, inputName: string): boolean {
         case "objecturl":
             pattern = /^.{1,60}$/
             break;
+        case "objectadditionalinfo":
+            return true;
     }
 
     if(pattern.test(input)) {
