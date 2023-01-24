@@ -12,7 +12,7 @@ export default function About() {
             <FiltersTab noSticky={true} />
             <h1 className='about__h1'>
                 МЫ — АМБИЦИОЗНАЯ КОМАНДА ДИЗАЙНЕРОВ И НЕ-ДИЗАЙНЕРОВ. 
-                МЫ ЛЮБИМ КРУТЫЕ РОССИЙСКИЕ ПРОЕКТЫ. 
+                МЫ ЛЮБИМ ХОРОШИЕ РОССИЙСКИЕ ПРОЕКТЫ. 
                 НАША ЦЕЛЬ — НАСЫЩАТЬ КУЛЬТУРУ КРАСИВЫМ И ПОЛЕЗНЫМ. 
                 ВОТ НАШ  <Anchor href="http://normcultura.agency">САЙТ</Anchor>. 
                 ВОТ НАША  <Anchor href="mailto:normcultura@gmail.com">ПОЧТА</Anchor>.
@@ -28,12 +28,12 @@ export default function About() {
                             <span className="curators__occupation">ДИЗАЙНЕР</span>
                         </div>
                         <span className="curators__description">
-                            are.na, html, Белла Хадид, коммунизм, NTS, «Тошнота» Сартра, вода с лимоном, Спайк Йонзе и Чарли Кауфман, 
-                            шахматы, ГОСТ звук, A24, прозрачные стаканы, kolonna publications, современный фолк, Fleabag, emergency intercom, кулинария, Стив Джобс, 032c, красивые стулья, 
-                            жесткий эмбиент, letterboxd, мягкое освещение, JPEGMAFIA, серый цвет, Nathan For You, бетон.
+                            are.na, писать html, Белла Хадид, Nathan For You, коммунизм, NTS Radio, «Тошнота» Сартра, вода с лимоном, A24, прозрачные стаканы, дизайн, Кауфман и Йонзе, 
+                            kolonna publications, современный фолк, кулинария, Стив Джобс, 032c, красивые стулья, 
+                            жёсткий эмбиент, letterboxd, офисы.
                         </span>
                         <span className="curators__favobject">
-                            ЛЮБИМЫЙ ОБЪЕКТ: <Anchor href='../object/6' className="curators__favobject-anchor">КОМПЛЕКТ БАЗОВОГО БЕЛЬЯ SHU</Anchor>
+                            ЛЮБИМЫЙ ОБЪЕКТ: <Anchor href='../object/9' className="curators__favobject-anchor">СТУЛ БРО DELO DESIGN</Anchor>
                         </span>
                     </div>
                 </article>
@@ -41,12 +41,12 @@ export default function About() {
                     <img src={polinchik} alt="Полина" className="curators__avatar" draggable="false" />
                     <div className="curators__info">
                         <div className="curators__title">
-                            <span className="curators__name">ПОЛИНА</span>
+                            <span className="curators__name">ПОЛИНА ОВЧИННИКОВА</span>
                             <span className="curators__occupation">ДИЗАЙНЕР, ДИДЖЕЙ</span>
                         </div>
                         <span className="curators__description">
-                            Огонёк, Брат 2, Паша Техник, The Temporary State, шахматы, Изич, типографика, VAC, завтраки, вода, USHATAVA, verlé, Figma, ладан, чистить зубы, зелёный чай, дёнер с халуми, 
-                            ванна с пеной, баня, Россия, фильтр кофе, здание ЦГАКФФД СПб, раковины, syg.ma, церкви, тяжелое одеяло, скамить.
+                            Сантал, бетон, Владимирская церковь, Figma, вода комнатной температуры, чистка зубов, 
+                            палатки, черный цвет, Паша Техник, здание ЦГАКФФД СПБ, шахматы, оружие, чай, The Temporary State, Россия, Огонек.
                         </span>
                         <span className="curators__favobject">
                             ЛЮБИМЫЙ ОБЪЕКТ: <Anchor href='../object/3' className="curators__favobject-anchor">НАБОР ДРИПОВ VERLÉ</Anchor>
@@ -57,12 +57,12 @@ export default function About() {
                     <img src={lomov} alt="Женя" className="curators__avatar" draggable="false" />
                     <div className="curators__info">
                         <div className="curators__title">
-                            <span className="curators__name">ЖЕНЯ</span>
+                            <span className="curators__name">ЖЕНЯ ЛОМОВ</span>
                             <span className="curators__occupation">ПИАРЩИК, ДИДЖЕЙ</span>
                         </div>
                         <span className="curators__description">
-                            USHATAVA, Земфира, Coca-Cola, Москва, бильярд, штучки, avgvst, флэт уайт, 
-                            Issey Miyake, свойство, техно, Гаспар Ноэ, белый цвет, мама и папа, Underdog, яхты, админить телеграм каналы.
+                            USHATAVA, Земфира, Coca-Cola, Москва, бильярд, штучки, avgvst, свойство, флэт уайт, Issey Miyake, 
+                            техно, Гаспар Ноэ, белый цвет, мама и папа, яхты, Underdog, админить телеграм каналы.
                         </span>
                         <span className="curators__favobject">
                             ЛЮБИМЫЙ ОБЪЕКТ: <Anchor href='../object/8' className="curators__favobject-anchor">МЫЛО PATTISSONCHA</Anchor>
