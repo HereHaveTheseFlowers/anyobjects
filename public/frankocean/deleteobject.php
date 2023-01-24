@@ -17,7 +17,7 @@
         //add image src to array
         foreach ($arr["objectsList"] as $key => $value) {
             if ($key == $data["objectkey"]) {
-                array_splice($arr["objectsList"], $key, 1);
+                unset($arr["objectsList"][$key]);
             }
         }
 

@@ -150,7 +150,7 @@ function ObjectCardAdmin(props: ObjectCardProps) {
             console.log(this.responseText);
             setTimeout(()=>{
                 fetchObjects();
-            }, 3000);
+            }, 2000);
         };
         xmlhttp.open("POST", `${window.location.origin}/${store.getState().phpKey}/deleteobject.php`);
         xmlhttp.send(JSON.stringify({ objectkey: props.objectkey }));
