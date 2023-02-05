@@ -6,6 +6,7 @@ import { vh, vw } from '../../utils/helpers';
 import { fetchObjects, ObjectProps } from '../../api/fetchObjects';
 import { Button } from '../../components';
 import { FormModal } from '../../components';
+import { validateForm } from '../../utils/validate';
 
 type ObjectGridProps = { mode?: 'admin' | null }
 
@@ -130,8 +131,8 @@ function ObjectCard(props: ObjectCardProps) {
                 </div>
             )
         }
-    } else {
-        return <ObjectCardAdmin {...this.props} />
+    } else if(props) {
+        return <ObjectCardAdmin {...props} />
     }
 }
 
@@ -149,8 +150,8 @@ function ObjectCardAdmin(props: ObjectCardProps) {
         xmlhttp.onload = function() {
             console.log(this.responseText);
             setTimeout(()=>{
-                fetchObjects();
-            }, 2000);
+                window.location.reload();
+            }, 1000);
         };
         xmlhttp.open("POST", `${window.location.origin}/${store.getState().phpKey}/deleteobject.php`);
         xmlhttp.send(JSON.stringify({ objectkey: props.objectkey }));
@@ -158,8 +159,27 @@ function ObjectCardAdmin(props: ObjectCardProps) {
     }
 
     const handleRefreshObject = (e: React.FormEvent<HTMLElement>) => {
-        e.preventDefault()
-        console.log(`refreshing object number ${props.objectkey}`)
+        e.preventDefault();
+        if(!e.target) return;
+        const fd = new FormData(e.target as HTMLFormElement);
+        if(fd && validateForm(fd) && store.getState().phpKey) {
+            for (const pair of fd.entries()) {
+                if(typeof pair[1] === 'string') {
+                    fd.set(pair[0], pair[1].replaceAll('[ПЕРЕНОС]', '\n'))
+                }
+            }
+            fd.append('objectkey', props.objectkey)
+            let xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function() {
+                console.log(this.responseText);
+                setTimeout(()=>{
+                    window.location.reload();
+                }, 1500);
+            };
+            xmlhttp.open("POST", `${window.location.origin}/${store.getState().phpKey}/refreshobject.php`);
+            xmlhttp.send(fd);
+            setisModalActive(false);
+        }
     }
 
     const checkForImage = (e: React.FocusEvent<HTMLInputElement, Element>) => {
@@ -180,47 +200,47 @@ function ObjectCardAdmin(props: ObjectCardProps) {
         <form className="object-card__info object-card__info_mode_admin" onSubmit={handleRefreshObject}>
             <div className="object-card__inputfield">
                 НАЗВАНИЕ: 
-                <input name='name' type='text' className="object-card__input" defaultValue={props.name} />
+                <input name='objectname' type='text' className="object-card__input" defaultValue={props.name} />
             </div>
             <div className="object-card__inputfield">
                 БРЕНД: 
-                <input name='brand' type='text'  className="object-card__input" defaultValue={props.brand} />
+                <input name='objectbrand' type='text'  className="object-card__input" defaultValue={props.brand} />
             </div>
             <div className="object-card__inputfield">
                 ЦЕНА: 
-                <input name='price' type='text'  className="object-card__input" defaultValue={props.price} />
+                <input name='objectprice' type='text'  className="object-card__input" defaultValue={props.price} />
             </div>
             <div className="object-card__inputfield">
                 КАТЕГОРИЯ: 
-                <input name='category' type='text'  className="object-card__input" defaultValue={props.category} />
+                <input name='objectcategory' type='text'  className="object-card__input" defaultValue={props.category} />
             </div>
             <div className="object-card__inputfield">
                 ОПИСАНИЕ: 
-                <input name='description' type='text'  className="object-card__input" defaultValue={props.description} />
+                <input name='objectdescription' type='text'  className="object-card__input" defaultValue={props.description} />
             </div>
             <div className="object-card__inputfield">
                 ДОП. ИНФА: 
-                <input name='additionalInfo' type='text'  className="object-card__input" defaultValue={props.additionalInfo.replaceAll('\n', '[ПЕРЕНОС]')} />
+                <input name='objectadditionalinfo' type='text'  className="object-card__input" defaultValue={props.additionalInfo.replaceAll('\n', '[ПЕРЕНОС]')} />
             </div>
             <div className="object-card__inputfield">
                 ССЫЛКА: 
-                <input name='url' type='text'  className="object-card__input" defaultValue={props.url} />
+                <input name='objecturl' type='text'  className="object-card__input" defaultValue={props.url} />
             </div>
             <div className="object-card__inputfield">
                 ТЕКСТ ССЫЛКИ: 
-                <input name='urlText' type='text'  className="object-card__input" defaultValue={props.urlText} />
+                <input name='objecturltext' type='text'  className="object-card__input" defaultValue={props.urlText} />
             </div>
             <div className="object-card__inputfield">
                 АЛЬТ. ТЕКСТ: 
-                <input name='altText' type='text'  className="object-card__input" defaultValue={props.altText} />
+                <input name='objectalttext' type='text'  className="object-card__input" defaultValue={props.altText} />
             </div>
             <div className="object-card__inputfield" title="544x544">
-                КАРТИНКА (БОЛЬШАЯ): 
-                <input name='mainImage' type='file'  className="object-card__input" onChange={checkForImage} />
+                КАРТИНКА (main.png): 
+                <input name='objectmainimage' type='file'  className="object-card__input" onChange={checkForImage} />
             </div>
             <div className="object-card__inputfield" title="432x432">
-                КАРТИНКА (ПРЕВЬЮ): 
-                <input name='previewImage' type='file'  className="object-card__input" onChange={checkForImage} />
+                КАРТИНКА (preview.png): 
+                <input name='objectpreviewimage' type='file'  className="object-card__input" onChange={checkForImage} />
             </div>
             <Button className='object-card__button-submit'>ОБНОВИТЬ ОБЪЕКТ</Button>
             

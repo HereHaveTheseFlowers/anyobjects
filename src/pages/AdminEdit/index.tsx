@@ -33,7 +33,7 @@ export default function AdminEdit() {
             xmlhttp.onload = function() {
                 console.log(this.responseText);
                 setTimeout(()=>{
-                    fetchObjects();
+                    window.location.reload();
                 }, 1000);
             };
             xmlhttp.open("POST", `${window.location.origin}/${store.getState().phpKey}/addobject.php`);
@@ -64,8 +64,8 @@ export default function AdminEdit() {
                     <FormModal.InputField fieldtitle='ССЫЛКА' name='objecturl' type='text' autoComplete="off" />
                     <FormModal.InputField fieldtitle='ТЕКСТ ССЫЛКИ' name='objecturltext' type='text' autoComplete="off" />
                     <FormModal.InputField fieldtitle='АЛЬТ. ТЕКСТ' name='objectalttext' type='text' autoComplete="off" />
-                    <FormModal.InputField fieldtitle='КАРТИНКА(БОЛЬШАЯ)' name='objectmainimage' type='file' title="544x544" />
-                    <FormModal.InputField fieldtitle='КАРТИНКА(ПРЕВЬЮ)' name='objectpreviewimage' type='file' title="432x432" />
+                    <FormModal.InputField fieldtitle='КАРТИНКА(main.png)' name='objectmainimage' type='file' title="544x544" />
+                    <FormModal.InputField fieldtitle='КАРТИНКА(preview.png)' name='objectpreviewimage' type='file' title="432x432" />
                     <FormModal.ButtonSubmit>ДОБАВИТЬ ОБЪЕКТ</FormModal.ButtonSubmit>
                 </FormModal>
             </div>

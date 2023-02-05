@@ -3,19 +3,12 @@ export function validateInput(input: any, inputName: string): boolean {
 
     let pattern = /(.?)+/
 
+
     switch(inputName) {
         case "objectmainimage":
-            if(input.name) {
-                return true;
-            } else {
-                return false;
-            }
+            return true;
         case "objectpreviewimage":
-            if(input.name) {
-                return true;
-            } else {
-                return false;
-            }
+            return true;
         case "objectname":
             pattern = /^.{1,20}$/
             break;
@@ -23,7 +16,7 @@ export function validateInput(input: any, inputName: string): boolean {
             pattern = /^.{1,20}$/
             break;
         case "objecturl":
-            pattern = /^.{1,60}$/
+            pattern = /^.{1,400}$/
             break;
         case "objectadditionalinfo":
             return true;
