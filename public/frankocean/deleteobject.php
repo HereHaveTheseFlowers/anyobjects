@@ -15,8 +15,26 @@
         //decode json into array
         $arr = json_decode($json, true);
         //add image src to array
+        echo 'objectkey to delete: ' . $data["objectkey"] . ' ';
         foreach ($arr["objectsList"] as $key => $value) {
-            if ($key == $data["objectkey"]) {
+            echo $key;
+            if (intval($key) + 1 == intval($data["objectkey"])) {
+                $filename = '../objects/' . $data["objectkey"] . '/main.png';
+                if (file_exists($filename)) {
+                    unlink($filename);
+                }
+                $filename = '../objects/' . $data["objectkey"] . '/preview.png';
+                if (file_exists($filename)) {
+                    unlink($filename);
+                }
+                $filename = '../objects/' . $data["objectkey"] . '/objectInfo.json';
+                if (file_exists($filename)) {
+                    unlink($filename);
+                }
+                if (is_dir('../objects/' . $data["objectkey"])) {
+                    rmdir('../objects/' . $data["objectkey"]);
+                }
+                echo 'deleting... ';
                 unset($arr["objectsList"][$key]);
             }
         }
