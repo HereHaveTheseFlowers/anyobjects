@@ -10,7 +10,7 @@ Curated project about Russian production. We have created an archive of objects 
 
 ## 🌐 Deploy
 
-https://anyobjects.herokuapp.com
+http://anyobjects.ru
 
 ## ⚙️ How it works
 
