@@ -8,6 +8,8 @@
 
 Curated project about Russian production. We have created an archive of objects that we found beautiful.
 
+![Google Chrome - Light](https://user-images.githubusercontent.com/106176669/217242972-85fe36a9-5d42-4c78-8ca6-16b98464690d.png)
+
 ## 🌐 Deploy
 
 http://anyobjects.ru
