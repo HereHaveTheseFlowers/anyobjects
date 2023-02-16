@@ -21,9 +21,6 @@ export class Store extends EventBus {
 
 const store = new Store();
 
-store.set("auth", 'admin');
-store.set("phpKey", 'frankocean');
-
 
 
 // @ts-ignore
