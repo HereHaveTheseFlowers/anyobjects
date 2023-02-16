@@ -13,9 +13,8 @@ export default function About() {
             <h1 className='about__h1'>
                 МЫ — АМБИЦИОЗНАЯ КОМАНДА ДИЗАЙНЕРОВ И НЕ-ДИЗАЙНЕРОВ. 
                 МЫ ЛЮБИМ ХОРОШИЕ РОССИЙСКИЕ ПРОЕКТЫ. 
-                НАША ЦЕЛЬ — НАСЫЩАТЬ КУЛЬТУРУ КРАСИВЫМ И ПОЛЕЗНЫМ. 
-                ВОТ НАШ  <Anchor href="http://normcultura.agency">САЙТ</Anchor>. 
-                ВОТ НАША  <Anchor href="mailto:normcultura@gmail.com">ПОЧТА</Anchor>.
+                НАША ЦЕЛЬ — НАСЫЩАТЬ КУЛЬТУРУ КРАСИВЫМ И ПОЛЕЗНЫМ.<br />
+                ВОТ НАШ  <Anchor href="http://normcultura.agency">САЙТ</Anchor>. ВОТ НАША  <Anchor href="mailto:normcultura@gmail.com">ПОЧТА</Anchor>.
                 <br /><br />
                 КУРАТОРЫ ОБЪЕКТОВ:
             </h1>
@@ -42,7 +41,7 @@ export default function About() {
                     <div className="curators__info">
                         <div className="curators__title">
                             <span className="curators__name">ПОЛИНА ОВЧИННИКОВА</span>
-                            <span className="curators__occupation">ДИЗАЙНЕР, ДИДЖЕЙ</span>
+                            <span className="curators__occupation">ДИЗАЙНЕР</span>
                         </div>
                         <span className="curators__description">
                             Сантал, бетон, Владимирская церковь, Figma, вода комнатной температуры, чистка зубов, 

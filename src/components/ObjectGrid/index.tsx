@@ -124,7 +124,7 @@ function ObjectCard(props: ObjectCardProps) {
                 <div className="object-card" onClick={navigateObject} data-category={category}>
                     <img className="object-card__image object-card__image_loaded" src={props.previewImage} alt={props.altText} draggable="false" width={objectImageSize} height={objectImageSize} />
                     <div className="object-card__info">
-                        <span className="object-card__brand">{props.category}</span>
+                        <span className="object-card__brand">{props.brand}</span>
                         <span className="object-card__name">{props.name}</span>
                         <span className="object-card__price">{props.price}₽</span>
                     </div>

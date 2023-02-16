@@ -39,7 +39,7 @@ export function FiltersTab(props: FiltersTabProps) {
       navigate(RouterList.HOME);
     }
     const element = event.target as HTMLButtonElement;
-    store.set("filter", element.textContent);
+    store.set("filter", element.textContent.replaceAll("\xa0", " "));
     UpdateFiltersState();
   };
 
@@ -54,14 +54,14 @@ export function FiltersTab(props: FiltersTabProps) {
             <Button onClick={applyFilter} className='filters-tab__filter'>ГИГИЕНА</Button>
             { !isMobile && 
               <>
-                <Button onClick={applyFilter} className='filters-tab__filter'>ОДЕЖДА И АКСЕССУАРЫ</Button>
+                <Button onClick={applyFilter} className='filters-tab__filter'>ОДЕЖДА&nbsp;И&nbsp;АКСЕССУАРЫ</Button>
                 <Button onClick={applyFilter} className='filters-tab__filter'>ЕДА</Button>
               </>
             }
         </span>
         { isMobile && 
           <span className="filters-tab__filters">
-              <Button onClick={applyFilter} className='filters-tab__filter'>ОДЕЖДА И АКСЕССУАРЫ</Button>
+              <Button onClick={applyFilter} className='filters-tab__filter'>ОДЕЖДА&nbsp;И&nbsp;АКСЕССУАРЫ</Button>
               <Button onClick={applyFilter} className='filters-tab__filter'>ЕДА</Button>
           </span>
         }
