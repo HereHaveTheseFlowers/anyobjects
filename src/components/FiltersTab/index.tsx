@@ -77,7 +77,7 @@ function UpdateFiltersState() {
     if(!store.getState().filter && button.textContent === 'ВСЁ') {
       button.classList.add('button_state_chosen')
     }
-    else if(button.textContent === store.getState().filter) {
+    else if(button.textContent.replaceAll("\xa0", " ") === store.getState().filter) {
       button.classList.add('button_state_chosen')
     }
     else {
