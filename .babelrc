@@ -3,7 +3,7 @@
         [
             "@babel/preset-env",
             {
-                "targets": "> 1%, not dead",
+                "targets": "> 0.25%",
                 "useBuiltIns": "entry",
                 "corejs": "3.26"
             }
