@@ -29,7 +29,6 @@ export default function Admin() {
                     console.log('Logged in as admin!')
                     store.set('auth', 'admin')
                     store.set('phpKey', output.response.message)
-                    console.log(output.response.message)
                     navigate(RouterList.ADMIN_EDIT);
                 }
             });

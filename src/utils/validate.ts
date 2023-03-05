@@ -10,16 +10,17 @@ export function validateInput(input: any, inputName: string): boolean {
         case "objectpreviewimage":
             return true;
         case "objectname":
-            pattern = /^.{1,20}$/
+            pattern = /^.{1,50}$/
             break;
         case "objectbrand":
-            pattern = /^.{1,20}$/
+            pattern = /^.{1,50}$/
             break;
         case "objecturl":
-            pattern = /^.{1,400}$/
+            pattern = /^.{1,500}$/
             break;
         case "objectadditionalinfo":
-            return true;
+            pattern = /^.{1,1000}$/
+            break;
     }
 
     if(pattern.test(input)) {
@@ -33,6 +34,7 @@ export function validateForm(formData: FormData): boolean {
     if(!formData) return false;
     for(const field of formData) {
         if(!validateInput(field[1], field[0])) {
+            console.log("cant validate " + field[1] + ' ' + field[0])
             return false;
         }
     }

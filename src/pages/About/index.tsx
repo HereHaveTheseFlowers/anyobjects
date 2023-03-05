@@ -14,7 +14,7 @@ export default function About() {
                 МЫ — АМБИЦИОЗНАЯ КОМАНДА ДИЗАЙНЕРОВ И НЕ-ДИЗАЙНЕРОВ. 
                 МЫ ЛЮБИМ ХОРОШИЕ РОССИЙСКИЕ ПРОЕКТЫ. 
                 НАША ЦЕЛЬ — НАСЫЩАТЬ КУЛЬТУРУ КРАСИВЫМ И ПОЛЕЗНЫМ.<br />
-                ВОТ НАШ  <Anchor href="http://normcultura.agency">САЙТ</Anchor>. ВОТ НАША  <Anchor href="mailto:normcultura@gmail.com">ПОЧТА</Anchor>.
+                ВОТ НАШ ВРЕМЕННЫЙ <Anchor href="http://normcultura.agency">САЙТ</Anchor>. ВОТ НАША  <Anchor href="mailto:normcultura@gmail.com">ПОЧТА</Anchor>.
                 <br /><br />
                 КУРАТОРЫ ОБЪЕКТОВ:
             </h1>

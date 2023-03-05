@@ -21,8 +21,6 @@ export class Store extends EventBus {
 
 const store = new Store();
 
-
-
 // @ts-ignore
 //window.store = store;
 

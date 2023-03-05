@@ -139,6 +139,7 @@ function ObjectCard(props: ObjectCardProps) {
 function ObjectCardAdmin(props: ObjectCardProps) {
     const objectImageSize =  ((vw(100) - vh(18)) / 3).toFixed(2);
     const [isModalActive, setisModalActive] = useState(false);
+    const navigate = useNavigate();
 
     const handleOpenDeleteObjectModal = () => {
         setisModalActive(true);
@@ -149,9 +150,9 @@ function ObjectCardAdmin(props: ObjectCardProps) {
         let xmlhttp = new XMLHttpRequest();
         xmlhttp.onload = function() {
             console.log(this.responseText);
-            setTimeout(()=>{
-                window.location.reload();
-            }, 1000);
+            navigate(RouterList.HOME)
+            window.location.reload();
+            
         };
         xmlhttp.open("POST", `${window.location.origin}/${store.getState().phpKey}/deleteobject.php`);
         xmlhttp.send(JSON.stringify({ objectkey: props.objectkey }));
@@ -162,6 +163,11 @@ function ObjectCardAdmin(props: ObjectCardProps) {
         e.preventDefault();
         if(!e.target) return;
         const fd = new FormData(e.target as HTMLFormElement);
+        for (const pair of fd.entries()) {
+                console.log(pair)
+        }
+        console.log(validateForm(fd))
+        console.log(store.getState().phpKey)
         if(fd && validateForm(fd) && store.getState().phpKey) {
             for (const pair of fd.entries()) {
                 if(typeof pair[1] === 'string') {
@@ -172,9 +178,8 @@ function ObjectCardAdmin(props: ObjectCardProps) {
             let xmlhttp = new XMLHttpRequest();
             xmlhttp.onload = function() {
                 console.log(this.responseText);
-                setTimeout(()=>{
-                    window.location.reload();
-                }, 1500);
+                navigate(RouterList.HOME)
+                window.location.reload();
             };
             xmlhttp.open("POST", `${window.location.origin}/${store.getState().phpKey}/refreshobject.php`);
             xmlhttp.send(fd);
