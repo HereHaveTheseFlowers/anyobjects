@@ -23,6 +23,10 @@ More than that, any user can submit an object they like via a form and that requ
 
 React lets us render new content dynamically with no page refreshing. All the styles are written via BEM architecture. Babel + core-js insure we are supported on all of the browsers we want to be supported, and webpack optimizes the files.
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/106176669/223543129-28cb6ccc-b47a-4683-adae-d5087a97bbb6.jpg" alt="anydrop" style="width: 50%;">
+</p>
+
 ## 🦾 Stack
 
  - Typescript
