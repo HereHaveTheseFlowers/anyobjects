@@ -10,6 +10,9 @@
         flex-direction: column
         align-items: center
         gap: $gap-normal
+        &.no-flexbox-gap
+            > *
+                margin-bottom: $gap-normal
 
 .filters-tab_position_sticky
     position: sticky
@@ -18,6 +21,9 @@
 .filters-tab__filters
     display: flex
     gap: $gap-normal
+    &.no-flexbox-gap
+        > *
+            margin-left: $gap-normal
 
 .filters-tab__back-button
     position: absolute

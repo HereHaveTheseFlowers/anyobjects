@@ -13,6 +13,9 @@
         margin: calc($margin-normal * 2.5) 0 0 0
         flex-direction: column
         gap: $margin-normal
+    &.no-flexbox-gap
+        > *
+            margin-left: $gap-normal
 
 .object_responsive_mobile
     width: calc(100vw - ($margin-normal * 2))
@@ -51,6 +54,9 @@
     padding-right: 20vh
     @media screen and (max-width: $breakpoint-tablet) // tablet
         padding-right: 0
+    &.no-flexbox-gap
+        > *
+            margin-bottom: $gap-normal
 
 .object__header
     display: flex
@@ -61,6 +67,9 @@
     font-size: 24px
     @media screen and (max-width: $breakpoint-phone)
         gap: $margin-petite
+    &.no-flexbox-gap
+        > *
+            margin-bottom: $gap-normal
 
 .object__name
     color: $color-font-active
@@ -92,6 +101,9 @@
     @media screen and (max-width: $breakpoint-phone)
         margin-top: $margin-normal
         margin-bottom: calc($margin-normal * 2.5)
+    &.no-flexbox-gap
+        > *
+            margin-bottom: $gap-small
 
 .object__nav-button
     font-style: normal

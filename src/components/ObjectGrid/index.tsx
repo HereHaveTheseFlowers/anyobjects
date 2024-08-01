@@ -178,8 +178,10 @@ function ObjectCardAdmin(props: ObjectCardProps) {
             let xmlhttp = new XMLHttpRequest();
             xmlhttp.onload = function() {
                 console.log(this.responseText);
-                navigate(RouterList.HOME)
-                window.location.reload();
+                setTimeout(()=>{
+                    navigate(RouterList.HOME)
+                    window.location.reload();
+                }, 1000);
             };
             xmlhttp.open("POST", `${window.location.origin}/${store.getState().phpKey}/refreshobject.php`);
             xmlhttp.send(fd);

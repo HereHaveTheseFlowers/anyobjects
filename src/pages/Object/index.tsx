@@ -2,8 +2,9 @@ import { useParams } from 'react-router-dom';
 import { Header, FiltersTab, Anchor, Button, Footer } from '../../components';
 import store from '../../utils/Store';
 import { useNavigate } from 'react-router-dom';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { RouterList } from '../../router/routerList';
+import checkFlexGap from '../../utils/checkFlexGap';
 
 function useForceUpdate(){
     const [value, setValue] = useState(0);
@@ -30,6 +31,16 @@ export default function Object() {
 	store.on("objects", forceUpdate);
     const navigate = useNavigate();
     const [imageLoading, setImageLoading] = useState(true);
+    
+    useEffect(() => {
+        if(!checkFlexGap()) {
+            document.querySelector('.object')?.classList.add("no-flexbox-gap")
+            document.querySelector('.object__header')?.classList.add("no-flexbox-gap")
+            document.querySelector('.object__links')?.classList.add("no-flexbox-gap")
+            document.querySelector('.object__info')?.classList.add("no-flexbox-gap")
+        } 
+    });
+
     if (store.getState().objects && store.getState().objects[id]) {
 
 		const currentObject: ObjectStateProps = store.getState().objects[id]

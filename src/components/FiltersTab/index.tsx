@@ -3,6 +3,7 @@ import store from '../../utils/Store';
 import { useNavigate } from 'react-router-dom';
 import { RouterList } from '../../router/routerList';
 import { useEffect } from 'react';
+import checkFlexGap from '../../utils/checkFlexGap';
 
 type FiltersTabProps = {
   noSticky?: boolean | string;
@@ -18,6 +19,10 @@ export function FiltersTab(props: FiltersTabProps) {
   const navigate = useNavigate();
   useEffect(() => {
     UpdateFiltersState();
+    if(!checkFlexGap()) {
+      document.querySelector('.filters-tab__filters')?.classList.add("no-flexbox-gap")
+      document.querySelector('.filters-tab')?.classList.add("no-flexbox-gap")
+    } 
   });
   const handleGoBack = () => {
     navigate(-1);

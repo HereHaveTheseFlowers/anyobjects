@@ -98,7 +98,7 @@ export function Header(props: HeaderProps) {
         <header className="header">
             <div className="header__menu header__menu_left">
                 <Button onClick={navigateAbout} className={buttonAboutClass}>О НАС</Button>
-                <Anchor className="header__menu-anchor" href="https://www.instagram.com/normcultura/">ИНСТАГРАМ</Anchor>
+                <Anchor className="header__menu-anchor" href="https://www.instagram.com/any.objects/">ИНСТАГРАМ</Anchor>
                 { isMobile && <Button onClick={handleOpenForm}>ПРЕДЛОЖИТЬ ОБЪЕКТ</Button> }
             </div>
             { isMobile && buttonBack }
