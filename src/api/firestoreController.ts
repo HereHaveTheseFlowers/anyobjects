@@ -78,7 +78,7 @@ export class firestoreController {
   public async updateObjects() {
     const objects = await this.getObjects();
     if (objects) {
-      objects.map((object)=> {
+      objects.map((object: any)=> {
         object.mainimage = `https://firebasestorage.googleapis.com/v0/b/anyobjects-f24a9.appspot.com/o/images%2Fmainimage${object.position}?alt=media`
         object.previewimage = `https://firebasestorage.googleapis.com/v0/b/anyobjects-f24a9.appspot.com/o/images%2Fpreviewimage${object.position}?alt=media`
         store.set(`objects.${object.position}`, object)
@@ -91,7 +91,10 @@ export class firestoreController {
     const blocksSnapshot = await getDocs(blocksCol);
     const blocksArr: DocumentData[] = [];
     blocksSnapshot.docs.map((doc) => {
-      const data = doc.data();
+      const data = doc.data()
+      for (let key in data) {      
+          if (data.hasOwnProperty(key)) data[key] = data[key].replaceAll( "\\n", "\n" );
+      }
       blocksArr.push(data);
     });
     return blocksArr;
