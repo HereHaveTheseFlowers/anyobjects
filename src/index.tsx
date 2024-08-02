@@ -6,8 +6,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { fetchObjects, ObjectProps } from './api/fetchObjects';
+import { ObjectProps } from './api/firestoreController';
 import store from './utils/Store';
+import FirestoreController from './api/firestoreController'
 
 /* Mobile viewport height hack */
 let timeoutId: NodeJS.Timeout | null = null;
@@ -23,22 +24,23 @@ window.addEventListener('resize', documentHeight);
 
 for(let i = 1; i <= 9; i++) {
   const mockupObject: ObjectProps = {
+    position: '',
     name: '',
     brand: '',
     price: '',
     category: '',
     description: '',
-    additionalInfo: '',
+    additionalinfo: '',
     url: '',
-    urlText: '',
-    altText: '',
-    mainImage: '',
-    previewImage: ''
+    urltext: '',
+    alttext: '',
+    mainimage: '',
+    previewimage: ''
   }
   store.set(`objects.${i}`, mockupObject);
 }
 
-fetchObjects();
+FirestoreController.updateObjects();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

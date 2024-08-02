@@ -1,18 +1,5 @@
 import store from '../utils/Store';
-
-export type ObjectProps = {
-    name: string;
-    brand: string;
-    price: string;
-    category: string;
-    description: string;
-    additionalInfo: string;
-    url: string;
-    urlText: string;
-    altText: string;
-    mainImage?: string;
-    previewImage?: string;
-}
+import { ObjectProps } from '../api/firestoreController';
 
 export const fetchObjects = () => {
     let xhr = new XMLHttpRequest();
@@ -28,8 +15,8 @@ export const fetchObjects = () => {
                     request.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             const jsonData: ObjectProps = JSON.parse(request.responseText);
-                            jsonData['mainImage'] = `${window.location.origin}/objects/${objectpath}/main.png`
-                            jsonData['previewImage'] = `${window.location.origin}/objects/${objectpath}/preview.png`
+                            jsonData['mainimage'] = `${window.location.origin}/objects/${objectpath}/main.png`
+                            jsonData['previewimage'] = `${window.location.origin}/objects/${objectpath}/preview.png`
                             store.set(`objects.${objectpath}`, jsonData)
                         }
                     }

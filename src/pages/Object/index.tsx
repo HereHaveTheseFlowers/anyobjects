@@ -5,26 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import { RouterList } from '../../router/routerList';
 import checkFlexGap from '../../utils/checkFlexGap';
+import { ObjectProps } from '../../api/firestoreController';
 
 function useForceUpdate(){
     const [value, setValue] = useState(0);
     return () => setValue(value => value + 1);
-}
-
-type ObjectStateProps = {
-    name: string;
-    brand: string;
-    price: string;
-    category: string;
-    description: string;
-    additionalInfo: string;
-    url: string;
-    urlText: string;
-    altText: string;
-    mainImage: string;
-    previewImage: string;
-}
-
+} 
 export default function Object() {
     let { id } = useParams();
     const forceUpdate = useForceUpdate();
@@ -43,7 +29,7 @@ export default function Object() {
 
     if (store.getState().objects && store.getState().objects[id]) {
 
-		const currentObject: ObjectStateProps = store.getState().objects[id]
+		const currentObject: ObjectProps = store.getState().objects[id]
         const handleNavigateCategory = () => {
             store.set("filter", currentObject.category);
             navigate(RouterList.HOME);
@@ -55,7 +41,7 @@ export default function Object() {
         const handleImageLoaded = () => {
             setImageLoading(false);
         };
-        if(!currentObject.mainImage || imageLoading) {
+        if(!currentObject.mainimage || imageLoading) {
 
             let skeletonImageResponsiveStyles = {}
             if(isMobile) {
@@ -73,7 +59,7 @@ export default function Object() {
                     <Header logoSize='small' />
                     <FiltersTab noSticky={true} buttonBack={true} />
                     <section className={`object ${isMobile ? 'object_responsive_mobile' : ''}`}>
-                        <img src={currentObject.mainImage} alt={currentObject.altText} className="object__image image_visibility_hidden" onLoad={() => {
+                        <img src={currentObject.mainimage} alt={currentObject.alttext} className="object__image image_visibility_hidden" onLoad={() => {
                             handleImageLoaded();
                         }} draggable="false" />
                         <div className="skeleton-image" style={{ height: '68vh', width: '68vh', ...skeletonImageResponsiveStyles}}></div>
@@ -113,7 +99,7 @@ export default function Object() {
                     <Header logoSize='small' />
                     <FiltersTab noSticky={true} buttonBack={true} />
                     <section className="object">
-                        <img src={currentObject.mainImage} alt={currentObject.altText} className="object__image object__image_loaded" draggable="false"  />
+                        <img src={currentObject.mainimage} alt={currentObject.alttext} className="object__image object__image_loaded" draggable="false"  />
                         <div className="object__card">
                             <div className="object__info">
                                 <div className="object__header">
@@ -122,11 +108,11 @@ export default function Object() {
                                     <span className="object__price">{currentObject.price}₽</span>
                                 </div>
                                 <span className="object__description">{currentObject.description}</span>
-                                <span className="object__additionalinfo">{currentObject.additionalInfo}</span>
+                                <span className="object__additionalinfo">{currentObject.additionalinfo}</span>
                             </div>
                             { (!isTablet || isMobile) &&
                                 <div className="object__links">
-                                    <span className="object__url">КУПИТЬ НА САЙТЕ <Anchor href={currentObject.url}>{currentObject.urlText}</Anchor></span>
+                                    <span className="object__url">КУПИТЬ НА САЙТЕ <Anchor href={currentObject.url}>{currentObject.urltext}</Anchor></span>
                                     <span className="object__nav">СМОТРЕТЬ ВСЕ ОБЪЕКТЫ ИЗ КАТЕГОРИИ <Button className="object__nav-button" onClick={handleNavigateCategory}>{currentObject.category}</Button></span>
                                 </div> 
                             }
@@ -134,7 +120,7 @@ export default function Object() {
                     </section>
                     { isTablet && !isMobile &&
                         <div className="object__links">
-                            <span className="object__url">КУПИТЬ НА САЙТЕ <Anchor href={currentObject.url}>{currentObject.urlText}</Anchor></span>
+                            <span className="object__url">КУПИТЬ НА САЙТЕ <Anchor href={currentObject.url}>{currentObject.urltext}</Anchor></span>
                             <span className="object__nav">СМОТРЕТЬ ВСЕ ОБЪЕКТЫ ИЗ КАТЕГОРИИ <Button className="object__nav-button" onClick={handleNavigateCategory}>{currentObject.category}</Button></span>
                         </div>
                     }

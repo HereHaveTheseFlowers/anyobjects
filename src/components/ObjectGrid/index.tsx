@@ -3,10 +3,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RouterList } from '../../router/routerList';
 import { vh, vw } from '../../utils/helpers';
-import { fetchObjects, ObjectProps } from '../../api/fetchObjects';
+import { ObjectProps } from '../../api/firestoreController';
 import { Button } from '../../components';
 import { FormModal } from '../../components';
 import { validateForm } from '../../utils/validate';
+import FirestoreController from '../../api/firestoreController'
 
 type ObjectGridProps = { mode?: 'admin' | null }
 
@@ -16,6 +17,7 @@ export class ObjectGrid extends React.Component<ObjectGridProps> {
     }
     componentDidMount() {
         this.filterUpdate();
+        store.on('filter', this.filterUpdate);
     }
     filterUpdate() {
         const newfilter = store.getState().filter ? store.getState().filter : "ВСЁ"
@@ -46,7 +48,6 @@ export class ObjectGrid extends React.Component<ObjectGridProps> {
             objectArray = objectArray.reverse();
         }
         
-        store.on('filter', this.filterUpdate);
 
         return (
             <div className='object-grid'>
@@ -62,13 +63,14 @@ export class ObjectGrid extends React.Component<ObjectGridProps> {
                             brand={object.value.brand}
                             category={object.value.category}
                             description={object.value.description}
-                            additionalInfo={object.value.additionalInfo}
+                            additionalinfo={object.value.additionalinfo}
                             url={object.value.url}
-                            urlText={object.value.urlText}
-                            altText={object.value.altText}
+                            urltext={object.value.urltext}
+                            alttext={object.value.alttext}
+                            position={object.value.position}
 
-                            mainImage={object.value.mainImage}
-                            previewImage={object.value.previewImage}
+                            mainimage={object.value.mainimage}
+                            previewimage={object.value.previewimage}
                         />
                     ))
                 }
@@ -105,12 +107,12 @@ function ObjectCard(props: ObjectCardProps) {
     const objectImageSize =  ((vw(100) - vh(18)) / 3).toFixed(2);
 
     if(props.mode !== 'admin') {
-        if(!props.previewImage || imageLoading) {
+        if(!props.previewimage || imageLoading) {
             return (
                 <div className="object-card" data-category={category}>
                     <img className="object-card__image image_visibility_hidden" onLoad={() => {
 						handleImageLoaded();
-					}} src={props.previewImage} alt={props.altText} draggable="false" width={objectImageSize} height={objectImageSize} />
+					}} src={props.previewimage} alt={props.alttext} draggable="false" width={objectImageSize} height={objectImageSize} />
                     <div className="skeleton-image"></div>
                     <div className="object-card__info" ref={cardInfoRef}>
                         <span className="object-card__brand skeleton-box" style={{width: '20%'}} />
@@ -122,7 +124,7 @@ function ObjectCard(props: ObjectCardProps) {
         } else {
             return (
                 <div className="object-card" onClick={navigateObject} data-category={category}>
-                    <img className="object-card__image object-card__image_loaded" src={props.previewImage} alt={props.altText} draggable="false" width={objectImageSize} height={objectImageSize} />
+                    <img className="object-card__image object-card__image_loaded" src={props.previewimage} alt={props.alttext} draggable="false" width={objectImageSize} height={objectImageSize} />
                     <div className="object-card__info">
                         <span className="object-card__brand">{props.brand}</span>
                         <span className="object-card__name">{props.name}</span>
@@ -147,15 +149,7 @@ function ObjectCardAdmin(props: ObjectCardProps) {
 
     const handleDeleteObject = (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault()
-        let xmlhttp = new XMLHttpRequest();
-        xmlhttp.onload = function() {
-            console.log(this.responseText);
-            navigate(RouterList.HOME)
-            window.location.reload();
-            
-        };
-        xmlhttp.open("POST", `${window.location.origin}/${store.getState().phpKey}/deleteobject.php`);
-        xmlhttp.send(JSON.stringify({ objectkey: props.objectkey }));
+        FirestoreController.deleteObject(props.position)
         setisModalActive(false);
     }
 
@@ -163,28 +157,33 @@ function ObjectCardAdmin(props: ObjectCardProps) {
         e.preventDefault();
         if(!e.target) return;
         const fd = new FormData(e.target as HTMLFormElement);
-        for (const pair of fd.entries()) {
-                console.log(pair)
-        }
-        console.log(validateForm(fd))
-        console.log(store.getState().phpKey)
-        if(fd && validateForm(fd) && store.getState().phpKey) {
+        if(fd && validateForm(fd)) {
+            const newObject: any = {
+                position: '',
+                name: '',
+                brand: '',
+                price: '',
+                category: '',
+                description: '',
+                additionalinfo: '',
+                url: '',
+                urltext: '',
+                alttext: ''
+            }
             for (const pair of fd.entries()) {
                 if(typeof pair[1] === 'string') {
                     fd.set(pair[0], pair[1].replaceAll('[ПЕРЕНОС]', '\n'))
+                    newObject[pair[0].replace('object', '')] =  pair[1]
+                } 
+            }
+            for (const pair of fd.entries() as any) {
+                if(pair[0] === 'objectmainimage' && pair[1] && pair[1].name) {
+                    FirestoreController.writeImage(pair[1] as File, `/images/mainimage${newObject.position}`)
+                } else if(pair[0] === 'objectpreviewimage' && pair[1] && pair[1].name) {
+                    FirestoreController.writeImage(pair[1] as File, `/images/previewimage${newObject.position}`)
                 }
             }
-            fd.append('objectkey', props.objectkey)
-            let xmlhttp = new XMLHttpRequest();
-            xmlhttp.onload = function() {
-                console.log(this.responseText);
-                setTimeout(()=>{
-                    navigate(RouterList.HOME)
-                    window.location.reload();
-                }, 1000);
-            };
-            xmlhttp.open("POST", `${window.location.origin}/${store.getState().phpKey}/refreshobject.php`);
-            xmlhttp.send(fd);
+            FirestoreController.writeObject(newObject)
             setisModalActive(false);
         }
     }
@@ -205,6 +204,10 @@ function ObjectCardAdmin(props: ObjectCardProps) {
     return (
     <div className="object-card object-card_mode_admin">
         <form className="object-card__info object-card__info_mode_admin" onSubmit={handleRefreshObject}>
+            <div className="object-card__inputfield">
+                ПОРЯДКОВЫЙ НОМЕР: 
+                <input name='objectposition' type='text' className="object-card__input" defaultValue={props.position} />
+            </div>
             <div className="object-card__inputfield">
                 НАЗВАНИЕ: 
                 <input name='objectname' type='text' className="object-card__input" defaultValue={props.name} />
@@ -227,7 +230,7 @@ function ObjectCardAdmin(props: ObjectCardProps) {
             </div>
             <div className="object-card__inputfield">
                 ДОП. ИНФА: 
-                <input name='objectadditionalinfo' type='text'  className="object-card__input" defaultValue={props.additionalInfo.replaceAll('\n', '[ПЕРЕНОС]')} />
+                <input name='objectadditionalinfo' type='text'  className="object-card__input" defaultValue={props.additionalinfo.replaceAll('\n', '[ПЕРЕНОС]')} />
             </div>
             <div className="object-card__inputfield">
                 ССЫЛКА: 
@@ -235,11 +238,11 @@ function ObjectCardAdmin(props: ObjectCardProps) {
             </div>
             <div className="object-card__inputfield">
                 ТЕКСТ ССЫЛКИ: 
-                <input name='objecturltext' type='text'  className="object-card__input" defaultValue={props.urlText} />
+                <input name='objecturltext' type='text'  className="object-card__input" defaultValue={props.urltext} />
             </div>
             <div className="object-card__inputfield">
                 АЛЬТ. ТЕКСТ: 
-                <input name='objectalttext' type='text'  className="object-card__input" defaultValue={props.altText} />
+                <input name='objectalttext' type='text'  className="object-card__input" defaultValue={props.alttext} />
             </div>
             <div className="object-card__inputfield" title="544x544">
                 КАРТИНКА (main.png): 
@@ -255,7 +258,7 @@ function ObjectCardAdmin(props: ObjectCardProps) {
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 13.63 5.63 8 0 2.37 2.37 0 8 5.63 13.63 0l2.34 2.37-5.6 5.6L16 13.63 13.63 16 8 10.34l-5.63 5.63Z"/></svg>
             </button>
         </form>
-        <img className="object-card__image object-card__image_mode_admin" src={props.previewImage} alt={props.altText} draggable="false" width={objectImageSize} height={objectImageSize} />
+        <img className="object-card__image object-card__image_mode_admin" src={props.previewimage} alt={props.alttext} draggable="false" width={objectImageSize} height={objectImageSize} />
         
         <FormModal active={isModalActive} setActive={setisModalActive} onSubmit={handleDeleteObject}>
             УВЕРЕНЫ, ЧТО ХОТИТЕ УДАЛИТЬ ОБЪЕКТ?

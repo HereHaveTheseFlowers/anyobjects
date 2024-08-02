@@ -2,14 +2,14 @@ import { Button, ObjectGrid, FormModal } from '../../components';
 import store from '../../utils/Store'
 import { useNavigate } from 'react-router-dom';
 import { RouterList } from '../../router/routerList';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { validateForm, validateInput } from '../../utils/validate';
 import { fetchObjects } from '../../api/fetchObjects';
+import FirestoreController, { ObjectProps } from '../../api/firestoreController'
 
 export default function AdminEdit() {
     
     const navigate = useNavigate();
-
     const navigateHome = () => {
         navigate(RouterList.HOME);
     };
@@ -23,21 +23,33 @@ export default function AdminEdit() {
         e.preventDefault();
         if(!e.target) return;
         const fd = new FormData(e.target as HTMLFormElement);
-        if(fd && validateForm(fd) && store.getState().phpKey) {
+        if(fd && validateForm(fd)) {
+            const newObject: any = {
+                position: '',
+                name: '',
+                brand: '',
+                price: '',
+                category: '',
+                description: '',
+                additionalinfo: '',
+                url: '',
+                urltext: '',
+                alttext: ''
+            }
             for (const pair of fd.entries()) {
                 if(typeof pair[1] === 'string') {
                     fd.set(pair[0], pair[1].replaceAll('[ПЕРЕНОС]', '\n'))
+                    newObject[pair[0].replace('object', '')] =  pair[1]
+                } 
+            }
+            for (const pair of fd.entries()) {
+                if(pair[0] === 'objectmainimage') {
+                    FirestoreController.writeImage(pair[1] as File, `/images/mainimage${newObject.position}`)
+                } else if(pair[0] === 'objectpreviewimage') {
+                    FirestoreController.writeImage(pair[1] as File, `/images/previewimage${newObject.position}`)
                 }
             }
-            let xmlhttp = new XMLHttpRequest();
-            xmlhttp.onload = function() {
-                console.log(this.responseText);
-                setTimeout(()=>{
-                    window.location.reload();
-                }, 1000);
-            };
-            xmlhttp.open("POST", `${window.location.origin}/${store.getState().phpKey}/addobject.php`);
-            xmlhttp.send(fd);
+            FirestoreController.writeObject(newObject)
             setisModalActive(false);
         }
     }
@@ -55,6 +67,7 @@ export default function AdminEdit() {
                 <ObjectGrid mode='admin' />
 
                 <FormModal active={isModalActive} setActive={setisModalActive} onSubmit={handleAddObject} mode='admin'>
+                    <FormModal.InputField fieldtitle='ПОРЯДКОВЫЙ НОМЕР' name='objectposition' type='text' autoComplete="off" />
                     <FormModal.InputField fieldtitle='НАЗВАНИЕ' name='objectname' type='text' autoComplete="off" />
                     <FormModal.InputField fieldtitle='БРЕНД' name='objectbrand' type='text' autoComplete="off" />
                     <FormModal.InputField fieldtitle='ЦЕНА' name='objectprice' type='text' autoComplete="off" />

@@ -9,6 +9,9 @@ export function validateInput(input: any, inputName: string): boolean {
             return true;
         case "objectpreviewimage":
             return true;
+        case "objectposition":
+            pattern = /^[1-9]\d*$/
+            break;
         case "objectname":
             pattern = /^.{1,50}$/
             break;
@@ -34,7 +37,6 @@ export function validateForm(formData: FormData): boolean {
     if(!formData) return false;
     for(const field of formData) {
         if(!validateInput(field[1], field[0])) {
-            console.log("cant validate " + field[1] + ' ' + field[0])
             return false;
         }
     }

@@ -1,11 +1,24 @@
 import { Button } from '../../components';
-import { fetchAuth } from '../../api/fetchAuth';
 import store from '../../utils/Store'
 import { useNavigate } from 'react-router-dom';
 import { RouterList } from '../../router/routerList';
+import FirestoreController from '../../api/firestoreController'
 
 export default function Admin() {
     
+    const block = {
+        position: "3",
+        name: "ЛИМОНАД ура МАНГО+ЧИЛИ",
+        brand: "LAPOCHKA",
+        price: "199",
+        category: "ЕДА",
+        description: "Наш любимый лимонад родом из Челябинска. Ручное производство и натуральные ингредиенты. В составе ничего лишнего – только сок и газированная вода.",
+        additionalinfo: "Объем: 330 мл",
+        url: "https://www.ozon.ru/product/naturalnyy-limonad-lapochka-bez-sahara-lapochka-mango-chili-6h0-33l-563646717/?_bctx=CAQQt90W&asb2=9j6-Ua29Fm7eqdBxsgu3ZI_clBskhODQ5N_hg-ozWOX3llgvxgO9Gdi-dpfav9Rn&avtc=1&avte=2&avts=1666101019&hs=1&miniapp=seller_372407&sh=Ea7d0St1ng",
+        urltext: "OZON",
+        alttext: "Жестяная банка лимонада с яркой иллюстрацией персика и перца чили. На банке нанесен текст “Mango + Chili, 100% natural lemonade, no sugar, 100% organic, lapochka.”",
+    }
+
     const navigate = useNavigate();
 
     const navigateHome = () => {
@@ -22,16 +35,13 @@ export default function Admin() {
           output[data[0].toString()] = data[1].toString();
         }
         if(!output.login || !output.password) return;
-        fetchAuth(output.login, output.password)
-            .then((output: any) => { 
-                console.log(output)
-                if(output && output.status && output.status == 200) {
-                    console.log('Logged in as admin!')
-                    store.set('auth', 'admin')
-                    store.set('phpKey', output.response.message)
-                    navigate(RouterList.ADMIN_EDIT);
-                }
-            });
+        FirestoreController.Login(output.login, output.password)
+        .then((userCredential)=>{
+            if(userCredential.user) {
+                store.set('auth', 'admin')
+                navigate(RouterList.ADMIN_EDIT)
+            }
+        })
     };
 
     return (
