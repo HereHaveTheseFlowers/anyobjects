@@ -1,14 +1,16 @@
 @font-face {
-    font-family: 'CoFo Sans';
-    src: url('CoFoSans-Bold.eot');
-    src: local('CoFo Sans Bold'), local('CoFoSans-Bold'),
-        url('CoFoSans-Bold.eot?#iefix') format('embedded-opentype'),
-        url('CoFoSans-Bold.woff2') format('woff2'),
-        url('CoFoSans-Bold.woff') format('woff'),
-        url('CoFoSans-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
+  font-family: "CoFo Sans";
+  src: url("CoFoSans-Bold.eot");
+  src:
+    local("CoFo Sans Bold"),
+    local("CoFoSans-Bold"),
+    url("CoFoSans-Bold.eot?#iefix") format("embedded-opentype"),
+    url("CoFoSans-Bold.woff2") format("woff2"),
+    url("CoFoSans-Bold.woff") format("woff"),
+    url("CoFoSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 /* Not in use rn
 @font-face {
@@ -25,39 +27,45 @@
 }
  */
 @font-face {
-    font-family: 'CoFo Sans';
-    src: url('CoFoSans-Regular.eot');
-    src: local('CoFo Sans'), local('CoFoSans-Regular'),
-        url('CoFoSans-Regular.eot?#iefix') format('embedded-opentype'),
-        url('CoFoSans-Regular.woff2') format('woff2'),
-        url('CoFoSans-Regular.woff') format('woff'),
-        url('CoFoSans-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+  font-family: "CoFo Sans";
+  src: url("CoFoSans-Regular.eot");
+  src:
+    local("CoFo Sans"),
+    local("CoFoSans-Regular"),
+    url("CoFoSans-Regular.eot?#iefix") format("embedded-opentype"),
+    url("CoFoSans-Regular.woff2") format("woff2"),
+    url("CoFoSans-Regular.woff") format("woff"),
+    url("CoFoSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'CoFo Sans';
-    src: url('CoFoSans-Medium.eot');
-    src: local('CoFo Sans Medium'), local('CoFoSans-Medium'),
-        url('CoFoSans-Medium.eot?#iefix') format('embedded-opentype'),
-        url('CoFoSans-Medium.woff2') format('woff2'),
-        url('CoFoSans-Medium.woff') format('woff'),
-        url('CoFoSans-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+  font-family: "CoFo Sans";
+  src: url("CoFoSans-Medium.eot");
+  src:
+    local("CoFo Sans Medium"),
+    local("CoFoSans-Medium"),
+    url("CoFoSans-Medium.eot?#iefix") format("embedded-opentype"),
+    url("CoFoSans-Medium.woff2") format("woff2"),
+    url("CoFoSans-Medium.woff") format("woff"),
+    url("CoFoSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'CoFo Sans ∀';
-    src: url('CoFoSans-A.otf');
-    src: local('CoFo Sans A'), local('CoFoSans-A'),
-        url('CoFoSans-A.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+  font-family: "CoFo Sans ∀";
+  src: url("CoFoSans-A.otf");
+  src:
+    local("CoFo Sans A"),
+    local("CoFoSans-A"),
+    url("CoFoSans-A.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* Not in use rn

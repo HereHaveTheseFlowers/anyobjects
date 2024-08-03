@@ -2,9 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 process.env.NODE_ENV = 'production';
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/index.tsx',
@@ -26,22 +25,6 @@ module.exports = {
             minify: true,
         }),
         new MiniCssExtractPlugin(),
-        new CopyWebpackPlugin({
-            patterns: [
-                { 
-                    to({ context, absoluteFilename }) {
-                        return `objects/${path.relative(context, absoluteFilename)}`;
-                    },
-                    from: 'public/objects' 
-                },
-                { 
-                    to({ context, absoluteFilename }) {
-                        return `frankocean/${path.relative(context, absoluteFilename)}`;
-                    },
-                    from: 'public/frankocean' 
-                }
-            ]
-        }),
     ],
     module: {
         rules: [

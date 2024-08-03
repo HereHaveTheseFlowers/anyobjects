@@ -9,7 +9,8 @@
     "dev": "npm run clean && webpack  --config webpack.dev.js && webpack serve --config webpack.dev.js",
     "watch": "webpack --watch",
     "serve": "webpack serve --config webpack.prod.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "prettier": "npx prettier ./src --write"
   },
   "engines": {
     "node": ">=15"
@@ -39,6 +40,7 @@
     "postcss-loader": "7.0.1",
     "postcss-short": "^5.0.0",
     "postcss-sorting": "^7.0.1",
+    "prettier": "^3.3.3",
     "react-yandex-metrika": "^2.6.0",
     "rimraf": "3.0.2",
     "sass": "1.56.0",
