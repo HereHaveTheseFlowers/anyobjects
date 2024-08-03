@@ -34,6 +34,7 @@ https://anyobjects.ru
  - Webpack
  - Sass, PostCSS
  - Babel и core-js
+ - Firebase
 
 ## 📜 Скрипты
 
