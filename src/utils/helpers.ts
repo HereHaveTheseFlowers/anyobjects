@@ -100,16 +100,18 @@ export function vw(percent: number) {
   return (percent * w) / 100;
 }
 
-export function debounce(f: any, ms: number) {
+export function debounce<T extends (...args: unknown[]) => void>(
+  f: T,
+  ms: number,
+): (...args: Parameters<T>) => boolean {
   let isCooldown = false;
 
-  return function () {
-    if (isCooldown) return false;
-
-    f.apply(this, arguments);
-
+  return function (this: unknown, ...args: Parameters<T>) {
+    if (isCooldown) {
+      return false;
+    }
+    f.apply(this, args);
     isCooldown = true;
-
     setTimeout(() => (isCooldown = false), ms);
     return true;
   };

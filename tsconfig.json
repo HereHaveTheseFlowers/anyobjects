@@ -6,10 +6,11 @@
     "jsx": "react-jsx",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "baseUrl": "src"
   },
   "files": ["src/index.tsx"],
-  "include": ["src/components", "src/custom.d.ts"],
+  "include": ["src"],
   "noImplicitAny": true,
   "noImplicitReturns": true,
   "noUnusedLocals": true,

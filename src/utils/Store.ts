@@ -3,7 +3,7 @@ import { set } from "./helpers";
 import { EventBus } from "./EventBus";
 
 export class Store extends EventBus {
-  private state: any = {};
+  private state: Record<string, unknown> = {};
 
   public set(keypath: string, data: unknown) {
     set(this.state, keypath, data);

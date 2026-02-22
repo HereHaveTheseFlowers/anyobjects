@@ -1,62 +1,84 @@
-import { Button } from "./../Button";
-import store from "../../utils/Store";
+import { Button } from "components/Button";
+import store from "utils/Store";
 import { useNavigate } from "react-router-dom";
-import { RouterList } from "../../router/routerList";
+import { RouterList } from "router/routerList";
 import { useEffect } from "react";
-import checkFlexGap from "../../utils/checkFlexGap";
+import checkFlexGap from "utils/checkFlexGap";
+import {
+  filterLabels,
+  mobileBreakpointPx,
+} from "appConstants";
 
 type FiltersTabProps = {
   noSticky?: boolean | string;
   buttonBack?: boolean;
 };
 
-export function FiltersTab(props: FiltersTabProps) {
-  let stickyClass = "";
-  if (!props.noSticky) {
-    stickyClass = " filters-tab_position_sticky";
+const FILTERS_TAB_FILTERS_SELECTOR = ".filters-tab__filters";
+const FILTERS_TAB_SELECTOR = ".filters-tab";
+
+function updateFiltersState() {
+  if (window.location.pathname === RouterList.ABOUT) {
+    return;
   }
+  const buttons = document.querySelectorAll(".filters-tab__filter");
+  const currentFilter = store.getState().filter;
+  for (const button of buttons) {
+    const text = button.textContent?.replaceAll("\xa0", " ") ?? "";
+    const isChosen =
+      (!currentFilter && text === filterLabels.all) ||
+      text === currentFilter;
+    if (isChosen) {
+      button.classList.add("button_state_chosen");
+    } else {
+      button.classList.remove("button_state_chosen");
+    }
+  }
+}
+
+export function FiltersTab(props: FiltersTabProps) {
+  const stickyClass = props.noSticky ? "" : " filters-tab_position_sticky";
   const navigate = useNavigate();
+
   useEffect(() => {
-    UpdateFiltersState();
+    updateFiltersState();
     if (!checkFlexGap()) {
       document
-        .querySelector(".filters-tab__filters")
+        .querySelector(FILTERS_TAB_FILTERS_SELECTOR)
         ?.classList.add("no-flexbox-gap");
-      document.querySelector(".filters-tab")?.classList.add("no-flexbox-gap");
+      document.querySelector(FILTERS_TAB_SELECTOR)?.classList.add("no-flexbox-gap");
     }
-  });
+  }, []);
+
   const handleGoBack = () => {
     navigate(-1);
   };
 
-  let buttonBack = null;
-  if (props.buttonBack) {
-    buttonBack = (
-      <button
-        className="filters-tab__back-button"
-        onClick={handleGoBack}
-        aria-label="Иконка стрелочки назад"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20">
-          <path d="m.96 10 7.19-7.19L9.7 4.37 5.29 8.8h23.75v2.4H5.29l4.41 4.39-1.57 1.6L.96 10Z" />
-        </svg>
-      </button>
-    );
-  }
+  const buttonBack = props.buttonBack ? (
+    <button
+      className="filters-tab__back-button"
+      onClick={handleGoBack}
+      aria-label="Иконка стрелочки назад"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20">
+        <path d="m.96 10 7.19-7.19L9.7 4.37 5.29 8.8h23.75v2.4H5.29l4.41 4.39-1.57 1.6L.96 10Z" />
+      </svg>
+    </button>
+  ) : null;
 
   const applyFilter = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    if (window.location.pathname !== "/") {
+    if (window.location.pathname !== RouterList.HOME) {
       navigate(RouterList.HOME);
     }
     const element = event.target as HTMLButtonElement;
-    store.set("filter", element.textContent.replaceAll("\xa0", " "));
-    UpdateFiltersState();
+    store.set("filter", element.textContent?.replaceAll("\xa0", " ") ?? "");
+    updateFiltersState();
   };
 
-  const isMobile: boolean = window.matchMedia(
-    "(max-device-width: 480px)",
+  const isMobile = window.matchMedia(
+    `(max-device-width: ${mobileBreakpointPx}px)`,
   ).matches;
 
   return (
@@ -64,21 +86,21 @@ export function FiltersTab(props: FiltersTabProps) {
       {!isMobile && buttonBack}
       <span className="filters-tab__filters">
         <Button onClick={applyFilter} className="filters-tab__filter">
-          ВСЁ
+          {filterLabels.all}
         </Button>
         <Button onClick={applyFilter} className="filters-tab__filter">
-          ИНТЕРЬЕР
+          {filterLabels.interior}
         </Button>
         <Button onClick={applyFilter} className="filters-tab__filter">
-          ГИГИЕНА
+          {filterLabels.hygiene}
         </Button>
         {!isMobile && (
           <>
             <Button onClick={applyFilter} className="filters-tab__filter">
-              ОДЕЖДА&nbsp;И&nbsp;АКСЕССУАРЫ
+              {filterLabels.clothingAndAccessories.replace(/ /g, "\u00a0")}
             </Button>
             <Button onClick={applyFilter} className="filters-tab__filter">
-              ЕДА
+              {filterLabels.food}
             </Button>
           </>
         )}
@@ -86,30 +108,13 @@ export function FiltersTab(props: FiltersTabProps) {
       {isMobile && (
         <span className="filters-tab__filters">
           <Button onClick={applyFilter} className="filters-tab__filter">
-            ОДЕЖДА&nbsp;И&nbsp;АКСЕССУАРЫ
+            {filterLabels.clothingAndAccessories.replace(/ /g, "\u00a0")}
           </Button>
           <Button onClick={applyFilter} className="filters-tab__filter">
-            ЕДА
+            {filterLabels.food}
           </Button>
         </span>
       )}
     </div>
   );
-}
-
-function UpdateFiltersState() {
-  //console.log('FILTER IS NOW:' + store.getState().filter)
-  if (window.location.pathname === "/about") return;
-  const buttons = document.querySelectorAll(".filters-tab__filter");
-  for (const button of buttons) {
-    if (!store.getState().filter && button.textContent === "ВСЁ") {
-      button.classList.add("button_state_chosen");
-    } else if (
-      button.textContent.replaceAll("\xa0", " ") === store.getState().filter
-    ) {
-      button.classList.add("button_state_chosen");
-    } else {
-      button.classList.remove("button_state_chosen");
-    }
-  }
 }

@@ -1,4 +1,7 @@
-export function validateInput(input: any, inputName: string): boolean {
+export function validateInput(
+  input: unknown,
+  inputName: string,
+): boolean {
   if (!input) return false;
 
   let pattern = /(.?)+/;
@@ -25,11 +28,7 @@ export function validateInput(input: any, inputName: string): boolean {
       break;
   }
 
-  if (pattern.test(input)) {
-    return true;
-  } else {
-    return false;
-  }
+  return pattern.test(String(input));
 }
 
 export function validateForm(formData: FormData): boolean {

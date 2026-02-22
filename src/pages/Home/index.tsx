@@ -1,33 +1,35 @@
 import {
   Footer,
   Header,
-  Button,
   FiltersTab,
   ObjectGrid,
-} from "../../components";
+} from "components";
 import { useRef, useEffect } from "react";
+import {
+  scrollArrowVisibilityThresholdPx,
+  scrollThrottleInterval,
+} from "appConstants";
 
 export default function Home() {
-  const arrowRef = useRef(null);
+  const arrowRef = useRef<HTMLButtonElement>(null);
+  const scrollThrottleRef = useRef(0);
 
-  let lastScrollTimer = 0;
   useEffect(() => {
-    window.onscroll = function () {
-      lastScrollTimer++;
-      if (lastScrollTimer > 10) {
-        lastScrollTimer = 0;
-        const distanceScrolled = document.documentElement.scrollTop;
-        if (distanceScrolled > 30) {
-          if (arrowRef && arrowRef.current)
-            arrowRef.current.style.opacity = "1";
-        } else {
-          if (arrowRef && arrowRef.current)
-            arrowRef.current.style.opacity = "0";
-        }
+    const handleScroll = () => {
+      scrollThrottleRef.current += 1;
+      if (scrollThrottleRef.current <= scrollThrottleInterval) {
+        return;
+      }
+      scrollThrottleRef.current = 0;
+      const distanceScrolled = document.documentElement.scrollTop;
+      const isVisible = distanceScrolled > scrollArrowVisibilityThresholdPx;
+      if (arrowRef.current) {
+        arrowRef.current.style.opacity = isVisible ? "1" : "0";
       }
     };
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.onscroll = null;
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -43,7 +45,7 @@ export default function Home() {
         В&nbsp;КОТОРЫХ НАХОДИМ КРАСИВОЕ ИСПОЛНЕНИЕ.
       </h1>
       <FiltersTab />
-      <ObjectGrid />
+      <ObjectGrid mode={null} />
       <Footer />
       <button
         className="home__arrow"

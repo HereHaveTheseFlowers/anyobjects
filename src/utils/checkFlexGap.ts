@@ -11,7 +11,7 @@ export default function checkFlexGap() {
 
   // append to the DOM (needed to obtain scrollHeight)
   document.body.appendChild(flex);
-  var isSupported = flex.scrollHeight === 1; // flex container should be 1px high from the row-gap
+  const isSupported = flex.scrollHeight === 1; // flex container должен быть 1px по высоте из-за row-gap
   flex.parentNode?.removeChild(flex);
 
   return isSupported;

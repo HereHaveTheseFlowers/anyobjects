@@ -1,16 +1,6 @@
-import { useEffect } from "react";
-import checkFlexGap from "../../utils/checkFlexGap";
-import { Anchor } from "./../Anchor";
+import { Anchor } from "components/Anchor";
 
 export function Footer() {
-  useEffect(() => {
-    if (!checkFlexGap()) {
-      document
-        .querySelector(".filters-tab__filters")
-        ?.classList.add("no-flexbox-gap");
-      document.querySelector(".filters-tab")?.classList.add("no-flexbox-gap");
-    }
-  });
   return (
     <footer className="footer">
       <span>
@@ -23,7 +13,7 @@ export function Footer() {
       <span>
         РАЗРАБОТКА:{" "}
         <Anchor href={"https://github.com/HereHaveTheseFlowers"}>
-          ВОТ ВОЗЬМИ ЦВЕТЫ
+          HERE HAVE THESE FLOWERS
         </Anchor>
       </span>
     </footer>

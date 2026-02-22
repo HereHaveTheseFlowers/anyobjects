@@ -46,14 +46,12 @@ export function ObjectGrid(props: ObjectGridProps) {
     forceUpdate();
   });
   let objectArray: Array<{ key: string; value: ObjectProps }> = [];
-  if (
-    store.getState().objects &&
-    typeof store.getState().objects === "object"
-  ) {
-    Object.entries(store.getState().objects).forEach((entry) => {
+  const stateObjects = store.getState().objects;
+  if (stateObjects && typeof stateObjects === "object") {
+    const objectsRecord = stateObjects as Record<string, ObjectProps>;
+    Object.entries(objectsRecord).forEach((entry) => {
       const [key, value] = entry;
-      const object = { key: key, value: value as ObjectProps };
-      objectArray.push(object);
+      objectArray.push({ key, value });
     });
     objectArray = objectArray.reverse();
 

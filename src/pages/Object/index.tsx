@@ -29,8 +29,10 @@ export default function Object() {
     }
   });
 
-  if (store.getState().objects && store.getState().objects[id]) {
-    const currentObject: ObjectProps = store.getState().objects[id];
+  const state = store.getState();
+  const objects = state.objects as Record<string, ObjectProps> | undefined;
+  if (objects && id && objects[id]) {
+    const currentObject = objects[id];
     const handleNavigateCategory = () => {
       store.set("filter", currentObject.category);
       navigate(RouterList.HOME);
