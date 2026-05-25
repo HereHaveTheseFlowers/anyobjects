@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { RouterList } from "../../router/routerList";
 import checkFlexGap from "../../utils/checkFlexGap";
-import { ObjectProps } from "../../api/firestoreController";
+import { ObjectProps } from "api/objectTypes";
 
 function useForceUpdate() {
   const [value, setValue] = useState(0);

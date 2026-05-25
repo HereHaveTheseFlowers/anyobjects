@@ -42,7 +42,7 @@ export default function About() {
             </span>
             <span className="curators__favobject">
               ЛЮБИМЫЙ ОБЪЕКТ:{" "}
-              <Anchor href="../object/9" className="curators__favobject-anchor">
+              <Anchor href="../object/1" className="curators__favobject-anchor">
                 СТУЛ БРО DELO DESIGN
               </Anchor>
             </span>

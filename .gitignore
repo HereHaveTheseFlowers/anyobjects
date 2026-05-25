@@ -1,3 +1,6 @@
 node_modules
 dist
 dist.rar
+public/api/config.php
+scripts/migrate.env
+scripts/migration-output

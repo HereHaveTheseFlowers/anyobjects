@@ -2,8 +2,8 @@ import { Button, ObjectGrid, FormModal } from "../../components";
 import { useNavigate } from "react-router-dom";
 import { RouterList } from "../../router/routerList";
 import { useState } from "react";
-import { validateForm, validateInput } from "../../utils/validate";
-import FirestoreController from "../../api/firestoreController";
+import { validateForm } from "../../utils/validate";
+import { logout, saveObject } from "api/objectsApi";
 
 export default function AdminEdit() {
   const navigate = useNavigate();
@@ -16,43 +16,23 @@ export default function AdminEdit() {
     setisModalActive(true);
   };
 
-  const handleAddObject = (e: React.FormEvent<HTMLElement>) => {
+  const handleLogout = async () => {
+    await logout();
+    navigate(RouterList.ADMIN);
+  };
+
+  const handleAddObject = async (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
-    if (!e.target) return;
+    if (!e.target) {
+      return;
+    }
     const fd = new FormData(e.target as HTMLFormElement);
-    if (fd && validateForm(fd)) {
-      const newObject: any = {
-        position: "",
-        name: "",
-        brand: "",
-        price: "",
-        category: "",
-        description: "",
-        additionalinfo: "",
-        url: "",
-        urltext: "",
-        alttext: "",
-      };
-      for (const pair of fd.entries()) {
-        if (typeof pair[1] === "string") {
-          fd.set(pair[0], pair[1].replaceAll("[ПЕРЕНОС]", "\n"));
-          newObject[pair[0].replace("object", "")] = pair[1];
-        }
-      }
-      for (const pair of fd.entries()) {
-        if (pair[0] === "objectmainimage") {
-          FirestoreController.writeImage(
-            pair[1] as File,
-            `/images/mainimage${newObject.position}`,
-          );
-        } else if (pair[0] === "objectpreviewimage") {
-          FirestoreController.writeImage(
-            pair[1] as File,
-            `/images/previewimage${newObject.position}`,
-          );
-        }
-      }
-      FirestoreController.writeObject(newObject);
+    if (!fd || !validateForm(fd)) {
+      return;
+    }
+
+    const saved = await saveObject(fd);
+    if (saved) {
       setisModalActive(false);
     }
   };
@@ -64,6 +44,7 @@ export default function AdminEdit() {
           <Button onClick={navigateHome}>ГО НА ГЛАВНУЮ</Button>
           <h1 className="admin-edit__h1">ПАНЕЛЬ АДМИНА</h1>
           <Button onClick={handleOpenForm}>ДОБАВИТЬ ОБЪЕКТ</Button>
+          <Button onClick={handleLogout}>ВЫЙТИ</Button>
         </header>
 
         <ObjectGrid mode="admin" />

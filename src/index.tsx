@@ -5,9 +5,9 @@ import "core-js/stable";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { ObjectProps } from "./api/firestoreController";
+import { ObjectProps } from "api/objectTypes";
 import store from "./utils/Store";
-import FirestoreController from "./api/firestoreController";
+import { fetchObjects } from "./api/fetchObjects";
 import {
   mockObjectsCount,
   viewportResizeDebounceMs,
@@ -44,7 +44,7 @@ for (let i = 1; i <= mockObjectsCount; i++) {
   store.set(`objects.${i}`, { ...emptyObjectProps });
 }
 
-FirestoreController.updateObjects();
+fetchObjects();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>

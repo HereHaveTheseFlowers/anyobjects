@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Loader } from "../components";
-import { withPrivateRoute } from "./withPrivateRoute";
+import { PrivateRoute } from "./PrivateRoute";
 import { RouterList } from "./routerList";
 
 import HomePage from "../pages/Home";
@@ -41,7 +41,11 @@ export function Router() {
             <Route index element={<AdminPage />} />
             <Route
               path={RouterList.ADMIN_EDIT}
-              element={withPrivateRoute(<AdminEditPage />)}
+              element={
+                <PrivateRoute>
+                  <AdminEditPage />
+                </PrivateRoute>
+              }
             />
           </Route>
         </Route>

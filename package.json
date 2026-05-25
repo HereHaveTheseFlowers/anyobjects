@@ -10,7 +10,9 @@
     "watch": "webpack --watch",
     "serve": "webpack serve --config webpack.prod.js",
     "start": "node server.js",
-    "prettier": "npx prettier ./src --write"
+    "prettier": "npx prettier ./src --write",
+    "migrate:export": "node scripts/migrate-from-firestore.mjs",
+    "migrate:images-github": "node scripts/migrate-images-from-github.mjs"
   },
   "engines": {
     "node": ">=15"

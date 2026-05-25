@@ -4,11 +4,11 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { RouterList } from "../../router/routerList";
 import { vh, vw } from "../../utils/helpers";
-import { ObjectProps } from "../../api/firestoreController";
+import { ObjectProps } from "api/objectTypes";
 import { Button } from "../../components";
 import { FormModal } from "../../components";
 import { validateForm } from "../../utils/validate";
-import FirestoreController from "../../api/firestoreController";
+import { deleteObject, saveObject } from "api/objectsApi";
 
 type ObjectGridProps = {
   mode: "admin" | null;
@@ -178,53 +178,26 @@ function ObjectCardAdmin(props: ObjectCardProps) {
     setisModalActive(true);
   };
 
-  const handleDeleteObject = (e: React.FormEvent<HTMLElement>) => {
+  const handleDeleteObject = async (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
-    FirestoreController.deleteObject(props.position);
-    setisModalActive(false);
+    const deleted = await deleteObject(props.position);
+    if (deleted) {
+      setisModalActive(false);
+    }
   };
 
-  const handleRefreshObject = (e: React.FormEvent<HTMLElement>) => {
+  const handleRefreshObject = async (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
-    if (!e.target) return;
+    if (!e.target) {
+      return;
+    }
     const fd = new FormData(e.target as HTMLFormElement);
-    if (fd && validateForm(fd)) {
-      const newObject: any = {
-        position: "",
-        name: "",
-        brand: "",
-        price: "",
-        category: "",
-        description: "",
-        additionalinfo: "",
-        url: "",
-        urltext: "",
-        alttext: "",
-      };
-      for (const pair of fd.entries()) {
-        if (typeof pair[1] === "string") {
-          fd.set(pair[0], pair[1].replaceAll("[ПЕРЕНОС]", "\n"));
-          newObject[pair[0].replace("object", "")] = pair[1];
-        }
-      }
-      for (const pair of fd.entries() as any) {
-        if (pair[0] === "objectmainimage" && pair[1] && pair[1].name) {
-          FirestoreController.writeImage(
-            pair[1] as File,
-            `/images/mainimage${newObject.position}`,
-          );
-        } else if (
-          pair[0] === "objectpreviewimage" &&
-          pair[1] &&
-          pair[1].name
-        ) {
-          FirestoreController.writeImage(
-            pair[1] as File,
-            `/images/previewimage${newObject.position}`,
-          );
-        }
-      }
-      FirestoreController.writeObject(newObject);
+    if (!fd || !validateForm(fd)) {
+      return;
+    }
+
+    const saved = await saveObject(fd);
+    if (saved) {
       setisModalActive(false);
     }
   };
